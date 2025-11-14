@@ -252,7 +252,7 @@
         }
 
         .gallery-section {
-            margin-bottom: 6rem;
+            margin: 5rem auto 6rem;
         }
 
         .section-heading {
@@ -434,6 +434,10 @@
             align-items: center;
         }
 
+        .detail-collage.single {
+            grid-template-columns: 1fr;
+        }
+
         .detail-visual {
             position: relative;
             display: grid;
@@ -462,6 +466,41 @@
             padding: clamp(1.8rem, 3vw, 2.8rem);
             border-radius: 28px;
             box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .detail-copy .detail-visual {
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-copy .detail-visual img:nth-child(2) {
+            bottom: -10px;
+        }
+
+        .shop-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.25rem 0;
+            list-style: none;
+            padding: 0;
+        }
+
+        .shop-products li {
+            background: rgba(127, 181, 140, 0.12);
+            border-radius: 18px;
+            padding: 0.9rem 1rem;
+            font-size: 0.95rem;
+        }
+
+        .shop-why {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+            display: grid;
+            gap: 0.4rem;
         }
 
         form {
@@ -556,19 +595,7 @@
                 margin-top: 1rem;
             }
 
-            .detail-collage {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
             }
-
-            .detail-visual img:nth-child(2) {
-                position: relative;
-                right: 0;
-                bottom: 0;
-                width: 60%;
-                margin-left: auto;
-            }
-        }
     </style>
 </head>
 <body>
@@ -581,7 +608,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#experiences">Experiences</a></li>
                 <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Visit</a></li>
+                <li><a href="#contact"> Visit</a></li>
             </ul>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="primaryNav" aria-expanded="false">
                 <span></span>
@@ -598,7 +625,7 @@
                     <h1>Meet Abiko - Where Nature Welcomes You Home.</h1>
                     <p>Stay, gather, learn and shop at Hawasa's organic,sustainable farm. Our echo-lodge imerses you in farm life, while flexible event space welcomes workshops and events. Take home our fresh organic produce and livestock products to share with your loved ones.</p>
                     <div class="hero-cta">
-                        <a class="btn-primary" href="#experiences">Experince Abiko</a>
+                        <a class="btn-primary" href="#experiences">Experience Abiko</a>
                         <a class="btn-link" href="#gallery">See the farm →</a>
                     </div>
                 </div>
@@ -617,7 +644,7 @@
         <section id="experiences" class="container">
             <div class="section-heading">
                 <span>Farm Life Experinces</span>
-                <h2>Choose your way of staying present.</h2>
+                <h2>Choose Your Oasis Journey.</h2>
             </div>
             <div class="offerings">
                 <article class="card">
@@ -627,7 +654,7 @@
                             <path d="M10 9c0-3 1.5-5 4-5s4 2 4 5" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round"/>
                         </svg>
                     </div>
-                    <h3>Shop Our Farm</h3>
+                    <h3>Explore Our Farm</h3>
                     <p class="muted">Fresh from our farm to your table.</p>
                     <a class="card-link" href="#detail-shop">Explore <span>→</span></a>
                 </article>
@@ -638,7 +665,7 @@
                             <path d="M11 23v-6h6v6" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <h3>Ecolodge Stays</h3>
+                    <h3>Experience Our Ecolodge</h3>
                     <p class="muted">Authentic farm life immersion.</p>
                     <a class="card-link" href="#detail-ecolodge">Explore <span>→</span></a>
                 </article>
@@ -651,8 +678,8 @@
                             <path d="M17 16c0-2 1.5-3.5 3.5-3.5S24 14 24 16" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round"/>
                         </svg>
                     </div>
-                    <h3>Event & Workshop</h3>
-                    <p class="muted">Venue for workshops & family gatherings.</p>
+                    <h3>Convene Here</h3>
+                    <p class="muted">Venue for brainstorming, workshops & celebrations.</p>
                     <a class="card-link" href="#detail-events">Explore <span>→</span></a>
                 </article>
                 <article class="card">
@@ -662,8 +689,8 @@
                             <path d="M8 12.5v6c0 1.933 2.686 3.5 6 3.5s6-1.567 6-3.5v-6" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round"/>
                         </svg>
                     </div>
-                    <h3>Learning & Research </h3>
-                    <p class="muted">Learn modern and data-driven farming practices.</p>
+                    <h3>Measure Discovery</h3>
+                    <p class="muted">Research & apply scientific & cultural practices.</p>
                     <a class="card-link" href="#detail-learning">Explore <span>→</span></a>
                 </article>
             </div>
@@ -671,59 +698,84 @@
 
         <section class="container detail-section" aria-label="Experience details">
             <div class="section-heading">
-                <span>Deeper Look</span>
-                <h2>Preview what each path includes.</h2>
+                                
             </div>
             <div class="detail-wrapper">
                 <div id="detail-shop" class="detail-anchor">
-                    <article class="detail-collage">
-                        <div class="detail-visual" aria-hidden="true">
-                            <img src="images/green_feed.jpeg" alt="">
-                            <img src="images/goats.jpeg" alt="">
-                        </div>
+                    <article class="detail-collage single">
                         <div class="detail-copy">
-                            <h3>Farmstand Collection</h3>
-                            <p>Weekly harvest boxes, bespoke fruit crates, goat dairy, honey infusions, and aquaculture proteins—packed to travel or delivered to your Hawassa address.</p>
-                            <p>Ask about chef partnerships and wholesale sourcing for restaurants or boutique grocers.</p>
-                        </div>
-                    </article>
+                            <div class="detail-visual" aria-hidden="true">
+                                <img src="images/green_feed.jpeg" alt="">
+                                <img src="images/goats.jpeg" alt="">
+                            </div>
+                        <h3>Organic Livestock & Agriculture Production.</h3>
+                        <p>From leafy greens to raw honey, every item is grown or crafted on-site so you taste the full spectrum of our regenerative systems.</p>
+                        <ul class="shop-products">
+                            <li>🥬 <strong>Fresh Produce</strong><br>Seasonal greens, tomatoes, roots, herbs, and fruits.</li>
+                            <li>🥩 <strong>Goat Meat</strong><br>Pasture-raised cuts—whole, half, or individual portions.</li>
+                            <li>🥚 <strong>Farm Eggs</strong><br>Free-range chickens with rich, orange yolks.</li>
+                            <li>🥛 <strong>Dairy</strong><br>Fresh milk, cream, butter, and cheese from pasture-raised cows.</li>
+                            <li>🍯 <strong>Raw Honey</strong><br>Pure, unfiltered honey with seasonal floral notes.</li>
+                            <li>🐟 <strong>Fish (Coming Soon)</strong><br>Aquaponic-raised freshwater fish.</li>
+                        </ul>
+                    </div>
+                </article>
                 </div>
                 <div id="detail-ecolodge" class="detail-anchor">
-                    <article class="detail-collage">
-                        <div class="detail-visual" aria-hidden="true">
-                            <img src="images/farm_area_hut.jpeg" alt="">
-                            <img src="images/green_feed3.jpeg" alt="">
-                        </div>
+                    <article class="detail-collage single">
                         <div class="detail-copy">
+                            <div class="detail-visual" aria-hidden="true">
+                                <img src="images/farm_area_hut.jpeg" alt="">
+                                <img src="images/green_feed3.jpeg" alt="">
+                            </div>
                             <h3>Ecolodge Residences</h3>
-                            <p>Minimal villas with panoramic decks, soaking tubs, and farm-to-table tasting menus. Morning meditations, guided farm walks, and chef dinners can be added on.</p>
-                            <p>Ideal for restorative weekends, founder residencies, or small family getaways.</p>
+                            <p>Sleep in cedar-lined suites nestled above the organic beds, with Lake Hawassa’s mist rolling through your windows and flocks of exotic birds as your alarm clock.</p>
+                            <p>Morning rituals blend guided meditation, herb foraging, and goat milking lessons before chef-led tastings that showcase the farm’s harvest.</p>
+                            <ul class="shop-products">
+                                <li>🛖 <strong>Lakeside Suites</strong><br>Panoramic decks, soft linens, and open-air lounges.</li>
+                                <li>🛁 <strong>Slow Rituals</strong><br>Soaking tubs, steam infused with farm herbs, and breathwork.</li>
+                                <li>🌅 <strong>Sunrise Patterns</strong><br>Birdsong, lake breezes, and guided dawn meditations.</li>
+                                <li>🍽️ <strong>Farm Cuisine</strong><br>Seasonal menus, goat dairy tasting flights, and papaya desserts.</li>
+                                <li>🌿 <strong>Learning Loops</strong><br>Milk goats, tend vegetable beds, and join permaculture walks.</li>
+                            </ul>
                         </div>
                     </article>
                 </div>
                 <div id="detail-events" class="detail-anchor">
-                    <article class="detail-collage">
-                        <div class="detail-visual" aria-hidden="true">
-                            <img src="images/farm_area.jpeg" alt="">
-                            <img src="images/produce_corn.jpeg" alt="">
-                        </div>
+                    <article class="detail-collage single">
                         <div class="detail-copy">
+                            <div class="detail-visual" aria-hidden="true">
+                                <img src="images/farm_area.jpeg" alt="">
+                                <img src="images/produce_corn.jpeg" alt="">
+                            </div>
                             <h3>Event & Workshop Space</h3>
-                            <p>Convertible indoor / outdoor venues with AV, culinary lab, and breakout nooks under the trees. Host retreats, strategy summits, culinary pop-ups, or community dinners.</p>
-                            <p>On-site planning support, farm experiences, and catering can be layered in.</p>
+                            <p>Brainstorm, train, or celebrate in a serene organic compound overlooking Lake Hawassa’s glittering horizon on the outskirts of the city.</p>
+                            <p>Guests wake up in the heart of the farm to birdsong, learn to milk goats, stroll herb gardens, and feel the lake breeze before workshops or family gatherings.</p>
+                            <ul class="shop-products">
+                                <li>🌿 <strong>Immersion</strong><br>Stroll through the green farm, smell the herbs, hear the farm come alive.</li>
+                                <li>🎓 <strong>Workshops</strong><br>Host trainings, mastermind retreats, and brainstorms with AV support.</li>
+                                <li>🎉 <strong>Celebrations</strong><br>Family gatherings, weddings, spiritual retreats in a serene setting.</li>
+                                <li>🌅 <strong>Scenic Moments</strong><br>Lake Hawassa views and sunrise farm walks with exotic birds overhead.</li>
+                            </ul>
                         </div>
                     </article>
                 </div>
                 <div id="detail-learning" class="detail-anchor">
-                    <article class="detail-collage">
-                        <div class="detail-visual" aria-hidden="true">
-                            <img src="images/green_feed2.jpeg" alt="">
-                            <img src="images/produce_corn3.jpeg" alt="">
-                        </div>
+                    <article class="detail-collage single">
                         <div class="detail-copy">
+                            <div class="detail-visual" aria-hidden="true">
+                                <img src="images/green_feed2.jpeg" alt="">
+                                <img src="images/produce_corn3.jpeg" alt="">
+                            </div>
                             <h3>Learning & Research Lab</h3>
-                            <p>Immersive practicums for universities, technical schools, and youth programs that combine regenerative theory with revenue-backed field experience.</p>
-                            <p>Internships, research residencies, and partnership projects ensure education, innovation, and community impact stay funded by the farm’s core business.</p>
+                            <p>Measure Discovery is our ethos: we observe trees, animals, and water cycles, then layer in scientific, AI, and cultural wisdom to guide every decision.</p>
+                            <p>Researchers, students, and farm apprentices capture data, journal insights, and share findings with the community so the farm and our partners evolve together.</p>
+                            <ul class="shop-products">
+                                <li>📊 <strong>Observe & Measure</strong><br>Instrumented plots, soil dashboards, and AI-assisted tracking.</li>
+                                <li>🧑‍🔬 <strong>Field Residencies</strong><br>Internships and research sprints focused on regenerative practices.</li>
+                                <li>🤝 <strong>Community Labs</strong><br>Co-create programs with staff, neighbors, and visiting experts.</li>
+                                <li>🌍 <strong>Knowledge Sharing</strong><br>Publish findings, host salons, and mentor local farmers.</li>
+                            </ul>
                         </div>
                     </article>
                 </div>
