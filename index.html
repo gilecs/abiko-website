@@ -554,6 +554,15 @@
             margin-bottom: 1rem;
         }
 
+        .success-message.is-error {
+            background: rgba(206, 85, 65, 0.12);
+            color: #7c1f1f;
+        }
+
+        .hidden-field {
+            display: none;
+        }
+
         footer {
             text-align: center;
             padding: 3rem 1rem 4rem;
@@ -806,10 +815,14 @@
                 <span>Plan Ahead</span>
                 <h2>Get in Touch</h2>
             </div>
-            <div class="success-message" id="successMessage">
+            <div class="success-message" id="successMessage" role="status" aria-live="polite">
                 Thank you for reaching out. We’ll be in touch shortly.
             </div>
-            <form id="contactForm">
+            <form id="contactForm" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="contact">
+                <p class="hidden-field">
+                    <label>Don’t fill this out if you're human <input name="bot-field"></label>
+                </p>
                 <div>
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
@@ -835,14 +848,36 @@
         const form = document.getElementById('contactForm');
         const successMessage = document.getElementById('successMessage');
 
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
+        const encodeFormData = (formData) => {
+            return new URLSearchParams(formData).toString();
+        };
+
+        const showStatus = (message, isError = false) => {
+            successMessage.textContent = message;
+            successMessage.classList.toggle('is-error', isError);
             successMessage.style.display = 'block';
-            form.reset();
             successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
             setTimeout(() => {
                 successMessage.style.display = 'none';
             }, 5000);
+        };
+
+        form?.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: encodeFormData(formData)
+            })
+            .then(() => {
+                form.reset();
+                showStatus('Thank you for reaching out. We’ll be in touch shortly.');
+            })
+            .catch(() => {
+                showStatus('Something went wrong. Please try again or email us directly.', true);
+            });
         });
 
         const navToggle = document.querySelector('.nav-toggle');
