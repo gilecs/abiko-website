@@ -401,20 +401,6 @@
             background: var(--white);
         }
 
-        .gallery-caption {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            background: #fff;
-            padding: 1rem 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .gallery-progress {
-            font-weight: 600;
-            color: rgba(15, 31, 26, 0.6);
-        }
 
         .contact {
             background: var(--white);
@@ -769,28 +755,26 @@
                                 <img src="images/produce_corn.jpeg" alt="">
                             </div>
                             <ul class="shop-products">
-                                <li>🌿 <strong>Immersion</strong><br>Stroll through the green farm, smell the herbs, hear the farm come alive.</li>
-                                <li>🎓 <strong>Workshops</strong><br>Host trainings, mastermind retreats, and brainstorms with AV support.</li>
-                                <li>🎉 <strong>Celebrations</strong><br>Family gatherings, weddings, spiritual retreats in a serene setting.</li>
-                                <li>🌅 <strong>Scenic Moments</strong><br>Lake Hawassa views and sunrise farm walks with exotic birds overhead.</li>
+                                <li>🧠 <strong>Spark Ideas & Build Skills</strong><br>Use the tranquil setting for trainings and retreats that boost creativity and collaboration.</li>
+                                <li>👨‍👩‍👧‍👦 <strong>Create Unforgettable Moments</strong><br>Celebrate milestones or host intimate ceremonies in serene gathering spaces.</li>
+                                <li>🏞️ <strong>Dare to be Unique</strong><br>Break from the usual and host your event with Lake Hawassa as a living backdrop.</li>
+
                             </ul>
                         </div>
                     </article>
                 </div>
                 <div id="detail-learning" class="detail-anchor detail-anchor-block">
-                    <h3 class="detail-anchor-title">Learning & Research Lab</h3>
+                    <h3 class="detail-anchor-title">Measure Discovery - Observe, Measure, and Share</h3>
                     <article class="detail-collage single">
                         <div class="detail-copy">
                             <div class="detail-visual" aria-hidden="true">
                                 <img src="images/green_feed2.jpeg" alt="">
                                 <img src="images/produce_corn3.jpeg" alt="">
-                            </div>
-                            <h3>Measure Discovery - Observe, Measure, and Share</h3>
+                            </div>                            
                             <ul class="shop-products">
-                                <li>📊 <strong>Observe & Measure</strong><br>Instrumented plots, soil dashboards, and AI-assisted tracking.</li>
-                                <li>🧑‍🔬 <strong>Field Residencies</strong><br>Internships and research sprints focused on regenerative practices.</li>
-                                <li>🤝 <strong>Community Labs</strong><br>Co-create programs with staff, neighbors, and visiting experts.</li>
-                                <li>🌍 <strong>Knowledge Sharing</strong><br>Publish findings, host salons, and mentor local farmers.</li>
+                                <li>🌿 <strong>Discover With Nature</strong><br>We don't assume - we observe. Guided by nature and supported by AI tools, we learn and share our findings.</li>
+                                <li>🤲 <strong>Build With Community </strong><br>We partner with staff, experts, and universities to create space for internships and genuine community empowerment.</li>
+                                <li>🌍 <strong>Share What Matters</strong><br>We publish what we learn, share openly, and let those insights spark action beyond our fields.</li>
                             </ul>
                         </div>
                     </article>
@@ -805,15 +789,11 @@
             </div>
             <div class="gallery-slider">
                 <div class="gallery-frame">
-                    <img id="galleryImage" src="images/green_feed.jpeg" alt="Feed crops">
+                    <img id="galleryImage" src="images/Farm_view.jpeg" alt="Farm view overlooking Lake Hawassa">
                 </div>
                 <div class="gallery-controls">
                     <button type="button" id="galleryPrev" aria-label="Previous photo">‹</button>
                     <button type="button" id="galleryNext" aria-label="Next photo">›</button>
-                </div>
-                <div class="gallery-caption">
-                    <span id="galleryCaption">Feed crops thriving under shade.</span>
-                    <span class="gallery-progress" id="galleryProgress">1 / 6</span>
                 </div>
             </div>
         </section>
@@ -903,12 +883,20 @@
         }
 
         const galleryPhotos = [
+            { src: 'images/Farm_view.jpeg', alt: 'Sunset overlooking Lake Hawassa from Abiko farm.' },
+            { src: 'images/morning_in_the farm.jpeg', alt: 'Morning light spilling over the farm path.' },
             { src: 'images/green_feed.jpeg', alt: 'Feed crops thriving under shade.' },
             { src: 'images/fruit_papays2.jpeg', alt: 'Papaya grove with morning light.' },
             { src: 'images/green_feed3.jpeg', alt: 'Aquaculture pond surrounded by greenery.' },
             { src: 'images/produce_corn3.jpeg', alt: 'Corn harvest stacked for drying.' },
-            { src: 'images/farm_area.jpeg', alt: 'Wide view of the Abiko farm campus.' },
-            { src: 'images/fruit_papaya.jpeg', alt: 'Papaya close-up ready to pick.' }
+            { src: 'images/papaya_tree.jpeg', alt: 'Papaya trees bursting with fruit.' },
+            { src: 'images/farm_entrance.jpeg', alt: 'Visitors arriving at the farm entrance.' },
+            { src: 'images/bees.jpeg', alt: 'Beekeeping frames rich with honey.' },
+            { src: 'images/goat_barn.jpeg', alt: 'Goats resting inside the barn.' },
+            { src: 'images/cow_barn.jpeg', alt: 'Cows feeding inside the dairy barn.' },
+            { src: 'images/Cow.jpeg', alt: 'Cow grazing on lush pasture.' },
+            { src: 'images/produce.jpeg', alt: 'Harvested vegetables ready for market.' },
+            { src: 'images/produce_corn.jpeg', alt: 'Corn cobs drying in the sun.' }            
         ];
 
         const galleryImage = document.getElementById('galleryImage');
