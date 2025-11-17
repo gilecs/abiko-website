@@ -157,7 +157,7 @@
         .hero::after {
             content: '';
             position: absolute;
-            inset: 40px;
+            inset: clamp(28px, 5vw, 40px);
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 32px;
             pointer-events: none;
@@ -167,7 +167,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 3rem;
-            padding: 4rem clamp(2rem, 5vw, 5rem) 4.5rem;
+            padding: clamp(3rem, 5vw, 4.5rem) clamp(2rem, 6vw, 5rem) clamp(3rem, 5vw, 4.5rem);
             position: relative;
             z-index: 1;
             align-items: center;
@@ -176,12 +176,14 @@
         .eyebrow {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.28em;
             font-size: 0.75rem;
             opacity: 0.75;
-            margin-bottom: 1.5rem;
+            margin: 0 auto 1.5rem;
+            text-align: center;
         }
 
         .eyebrow::before,
@@ -209,6 +211,13 @@
             display: flex;
             align-items: center;
             gap: 1.5rem;
+        }
+
+        .hero-cta a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
         }
 
         .btn-primary {
@@ -595,15 +604,22 @@
             }
 
             .nav-cta {
-                display: none;
+                display: inline-flex;
+                order: 2;
+                width: auto;
+                padding: 0.6rem 1.3rem;
+                font-weight: 600;
+                margin-top: 0;
             }
 
             .nav-toggle {
+                order: 3;
                 display: inline-flex;
             }
 
             nav {
-                gap: 1rem;
+                gap: 0.75rem;
+                flex-wrap: nowrap;
             }
 
             .hero-card {
@@ -618,6 +634,39 @@
             }
 
             }
+
+        @media (max-width: 600px) {
+            .hero {
+                margin: 1.5rem auto 2rem;
+            }
+
+            .hero::after {
+                inset: clamp(18px, 6vw, 24px);
+                border-radius: 24px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                padding: 3rem 2rem 3.5rem;
+                gap: 2rem;
+            }
+
+            .hero-card {
+                position: relative;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .hero-cta {
+                gap: 0.75rem;
+            }
+
+            .hero-cta a {
+                flex: 1 1 50%;
+            }
+        }
     </style>
 </head>
 <body>
