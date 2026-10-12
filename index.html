@@ -625,6 +625,16 @@
             color: #7c1f1f;
         }
 
+        .success-message a {
+            color: inherit;
+            font-weight: 600;
+        }
+
+        button[type="submit"]:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
         .hidden-field {
             display: none;
         }
@@ -942,21 +952,19 @@
                 <span>Plan Ahead</span>
                 <h2>Get in Touch</h2>
             </div>
-            <div class="success-message" id="successMessage" role="status" aria-live="polite">
-                Thank you for reaching out. We’ll be in touch shortly.
-            </div>
+            <div class="success-message" id="successMessage" role="status" aria-live="polite" tabindex="-1"></div>
             <form id="contactForm" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
                 <input type="hidden" name="form-name" value="contact">
                 <p class="hidden-field">
-                    <label>Don’t fill this out if you're human <input name="bot-field"></label>
+                    <label>Don’t fill this out if you're human <input name="bot-field" tabindex="-1" autocomplete="off"></label>
                 </p>
                 <div>
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" autocomplete="name" required>
                 </div>
                 <div>
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" required>
                 </div>
                 <div>
                     <label for="message">Message</label>
@@ -979,32 +987,60 @@
             return new URLSearchParams(formData).toString();
         };
 
-        const showStatus = (message, isError = false) => {
-            successMessage.textContent = message;
+        const contactEmail = 'info@abikoagritech.com';
+        const submitButton = form?.querySelector('button[type="submit"]');
+        const submitLabel = submitButton?.textContent;
+
+        const showStatus = (html, isError = false) => {
+            successMessage.innerHTML = html;
             successMessage.classList.toggle('is-error', isError);
             successMessage.style.display = 'block';
+            successMessage.focus({ preventScroll: true });
             successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            setTimeout(() => {
-                successMessage.style.display = 'none';
-            }, 5000);
         };
 
-        form?.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const formData = new FormData(form);
+        const failMessage = (reason) =>
+            `${reason} Your message is still in the form, so you can try again. ` +
+            `Or email us at <a href="mailto:${contactEmail}">${contactEmail}</a>.`;
 
-            fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: encodeFormData(formData)
-            })
-            .then(() => {
+        form?.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            if (!navigator.onLine) {
+                showStatus(failMessage('You seem to be offline.'), true);
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending…';
+            successMessage.style.display = 'none';
+
+            // Slow connections get plenty of time, but not forever.
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), 45000);
+
+            try {
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: encodeFormData(new FormData(form)),
+                    signal: controller.signal
+                });
+                if (!response.ok) {
+                    throw new Error(`Server replied ${response.status}`);
+                }
                 form.reset();
-                showStatus('Thank you for reaching out. We’ll be in touch shortly.');
-            })
-            .catch(() => {
-                showStatus('Something went wrong. Please try again or email us directly.', true);
-            });
+                showStatus('Thank you, your message was sent. We’ll be in touch shortly.');
+            } catch (error) {
+                const reason = error.name === 'AbortError'
+                    ? 'The connection is too slow right now and the message didn’t go through.'
+                    : 'Sorry, your message didn’t go through.';
+                showStatus(failMessage(reason), true);
+            } finally {
+                clearTimeout(timer);
+                submitButton.disabled = false;
+                submitButton.textContent = submitLabel;
+            }
         });
 
         const navToggle = document.querySelector('.nav-toggle');
