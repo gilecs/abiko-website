@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abikoagritech.com/sitemap.xml
