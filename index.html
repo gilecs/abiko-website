@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abiko Agritech | Organic Farm &amp; Ecolodge in Hawassa, Ethiopia</title>
-    <meta name="description" content="Organic farm near Hawassa, Ethiopia. Stay at our ecolodge, host workshops and celebrations, and take home fresh produce, dairy, eggs, honey and goat meat.">
+    <title>Abiko Agritech | Organic Farm in Hawassa, Ethiopia</title>
+    <meta name="description" content="Organic farm near Hawassa, Ethiopia. Visit the farm, host workshops and celebrations, and take home fresh produce, dairy, eggs, honey and goat meat. Our ecolodge is opening soon.">
     <link rel="canonical" href="https://abikoagritech.com/">
     <meta name="theme-color" content="#1f3a30">
 
@@ -18,8 +18,8 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Abiko Agritech">
     <meta property="og:url" content="https://abikoagritech.com/">
-    <meta property="og:title" content="Abiko Agritech | Organic Farm &amp; Ecolodge in Hawassa">
-    <meta property="og:description" content="Organic farm near Hawassa, Ethiopia. Stay at our ecolodge, host workshops and celebrations, and take home fresh produce, dairy, eggs, honey and goat meat.">
+    <meta property="og:title" content="Abiko Agritech | Organic Farm in Hawassa, Ethiopia">
+    <meta property="og:description" content="Organic farm near Hawassa, Ethiopia. Visit the farm, host workshops and celebrations, and take home fresh produce, dairy, eggs, honey and goat meat. Our ecolodge is opening soon.">
     <meta property="og:image" content="https://abikoagritech.com/images/share.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -32,7 +32,7 @@
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Abiko Agritech",
-        "description": "Organic farm near Hawassa, Ethiopia. Stay at our ecolodge, host workshops and celebrations, and take home fresh produce, dairy, eggs, honey and goat meat.",
+        "description": "Organic farm near Hawassa, Ethiopia. Visit the farm, host workshops and celebrations, and take home fresh produce, dairy, eggs, honey and goat meat. Our ecolodge is opening soon.",
         "url": "https://abikoagritech.com/",
         "logo": "https://abikoagritech.com/images/Abiko-Logo-Color.jpg",
         "image": "https://abikoagritech.com/images/share.jpg",
@@ -674,8 +674,75 @@
             cursor: wait;
         }
 
+        .badge-soon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 0.4rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            background: var(--mint);
+            color: var(--mid);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .waitlist {
+            margin-top: 0.5rem;
+            padding: clamp(1.25rem, 3vw, 1.75rem);
+            border-radius: 22px;
+            background: rgba(127, 181, 140, 0.12);
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .waitlist h4 {
+            font-size: 1.1rem;
+            line-height: 1.35;
+        }
+
+        .waitlist-form {
+            grid-template-columns: 1fr 1fr;
+            align-items: end;
+            gap: 0.9rem;
+        }
+
+        .waitlist-form .check,
+        .waitlist-form button {
+            grid-column: 1 / -1;
+        }
+
+        .waitlist-form .check {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-transform: none;
+            letter-spacing: normal;
+            font-size: 0.95rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .waitlist-form .check input {
+            width: 1.15rem;
+            height: 1.15rem;
+            accent-color: var(--mid);
+        }
+
+        @media (max-width: 600px) {
+            .waitlist-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .hidden-field {
             display: none;
+        }
+
+        footer a {
+            color: inherit;
         }
 
         footer {
@@ -810,7 +877,7 @@
                 <div>
                     <span class="eyebrow">The Escape Invitation to Our Sanctuary</span>
                     <h1>Meet Abiko – Where Nature Welcomes You Home.</h1>
-                    <p>Stay, gather, learn, and shop at Hawassa’s organic, sustainable farm. Our eco-lodge immerses you in farm life, while flexible event spaces welcome workshops and celebrations. Take home our fresh organic produce and livestock products to share with your loved ones.</p>
+                    <p>Gather, learn, and shop at Hawassa’s organic, sustainable farm. Flexible event spaces welcome workshops and celebrations, and our eco-lodge, opening soon, will let you stay and live farm life. Take home our fresh organic produce and livestock products to share with your loved ones.</p>
                     <div class="hero-cta">
                         <a class="btn-primary" href="#experiences">Experience Abiko</a>
                         <a class="btn-link" href="#gallery">See the farm →</a>
@@ -855,9 +922,9 @@
                             <path d="M11 23v-6h6v6" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <h3>Experience Our Ecolodge</h3>
+                    <h3>Experience Our Ecolodge <span class="badge-soon">Opening soon</span></h3>
                     <p class="muted">Authentic farm life immersion.</p>
-                    <a class="card-link" href="#detail-ecolodge">Explore <span>→</span></a>
+                    <a class="card-link" href="#detail-ecolodge">Get notified <span>→</span></a>
                 </article>
                 <article class="card">
                     <div class="card-icon" aria-hidden="true">
@@ -914,7 +981,7 @@
                 </article>
                 </div>
                 <div id="detail-ecolodge" class="detail-anchor detail-anchor-block">
-                    <h3 class="detail-anchor-title">Experience Our Ecolodge – Authentic Farm Immersion</h3>
+                    <h3 class="detail-anchor-title">Experience Our Ecolodge – Authentic Farm Immersion <span class="badge-soon">Opening soon</span></h3>
                     <article class="detail-collage single">
                         <div class="detail-copy">
                             <div class="detail-visual" aria-hidden="true">
@@ -922,11 +989,36 @@
                                 <picture><source type="image/webp" srcset="images/opt/green_feed3-480.webp 480w, images/opt/green_feed3-800.webp 800w" sizes="(max-width: 768px) 65vw, 740px"><img src="images/opt/green_feed3-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
                             </div>
                             <ul class="shop-products">
-                                <li>🌄 <strong>Wake with the Farm</strong><br>Rise to exotic birdsong, cool morning air, and the farm stirring awake.</li>
-                                <li>🌾 <strong>Immerse in Farm Life</strong><br>Milk a cow, watch honey gathered from the comb and join in tending the vibrant garden.</li>
-                                <li>🍽️ <strong>Taste the Farm </strong><br>Savor vine-warm tomatoes, just-set cheeses, and honey tasting of wildflowers.</li>
-                                <li>🌿 <strong>Reconenct with Nature</strong><br>Meditate while sunrise and sunset glow over the beautiful Lake Hawassa from a distance.</li>
+                                <li>🌄 <strong>Wake with the Farm</strong><br>You’ll rise to exotic birdsong, cool morning air, and the farm stirring awake.</li>
+                                <li>🌾 <strong>Immerse in Farm Life</strong><br>You’ll milk a cow, watch honey gathered from the comb, and join in tending the vibrant garden.</li>
+                                <li>🍽️ <strong>Taste the Farm</strong><br>You’ll savor vine-warm tomatoes, just-set cheeses, and honey tasting of wildflowers.</li>
+                                <li>🌿 <strong>Reconnect with Nature</strong><br>You’ll meditate as sunrise and sunset glow over beautiful Lake Hawassa in the distance.</li>
                             </ul>
+                            <div class="waitlist">
+                                <h4>We’re building the ecolodge now. Want to be among the first guests?</h4>
+                                <p class="muted">Leave your email and we’ll let you know the moment bookings open.</p>
+                                <div class="success-message" id="waitlistStatus" role="status" aria-live="polite" tabindex="-1"></div>
+                                <form id="waitlistForm" class="waitlist-form" name="lodge-waitlist" method="POST" data-netlify="true" data-netlify-honeypot="bot-field"
+                                    data-success="You’re on the list. We’ll email you as soon as the ecolodge opens.">
+                                    <input type="hidden" name="form-name" value="lodge-waitlist">
+                                    <p class="hidden-field">
+                                        <label>Don’t fill this out if you're human <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+                                    </p>
+                                    <div>
+                                        <label for="waitlist-name">Name</label>
+                                        <input type="text" id="waitlist-name" name="name" autocomplete="name">
+                                    </div>
+                                    <div>
+                                        <label for="waitlist-email">Email</label>
+                                        <input type="email" id="waitlist-email" name="email" autocomplete="email" inputmode="email" required>
+                                    </div>
+                                    <label class="check">
+                                        <input type="checkbox" name="farm_news" value="yes">
+                                        <span>Also send me occasional farm news</span>
+                                    </label>
+                                    <button type="submit">Notify me</button>
+                                </form>
+                            </div>
                         </div>
                     </article>
                 </div>
@@ -1015,72 +1107,80 @@
     </main>
 
     <footer>
-        <p>© 2024 Abiko Agritech · info@abikoagritech.com · Hawassa, Ethiopia</p>
+        <p>© <span id="year">2026</span> Abiko Agritech · <a href="mailto:info@abikoagritech.com">info@abikoagritech.com</a> · Hawassa, Ethiopia</p>
     </footer>
 
     <script>
-        const form = document.getElementById('contactForm');
-        const successMessage = document.getElementById('successMessage');
-
-        const encodeFormData = (formData) => {
-            return new URLSearchParams(formData).toString();
-        };
-
         const contactEmail = 'info@abikoagritech.com';
-        const submitButton = form?.querySelector('button[type="submit"]');
-        const submitLabel = submitButton?.textContent;
 
-        const showStatus = (html, isError = false) => {
-            successMessage.innerHTML = html;
-            successMessage.classList.toggle('is-error', isError);
-            successMessage.style.display = 'block';
-            successMessage.focus({ preventScroll: true });
-            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        };
+        const encodeFormData = (formData) => new URLSearchParams(formData).toString();
 
         const failMessage = (reason) =>
-            `${reason} Your message is still in the form, so you can try again. ` +
+            `${reason} What you typed is still in the form, so you can try again. ` +
             `Or email us at <a href="mailto:${contactEmail}">${contactEmail}</a>.`;
 
-        form?.addEventListener('submit', async (event) => {
-            event.preventDefault();
+        // One handler for every Netlify form: contact form and lodge waitlist.
+        const setUpForm = (form, statusBox, successText) => {
+            if (!form || !statusBox) return;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const submitLabel = submitButton.textContent;
 
-            if (!navigator.onLine) {
-                showStatus(failMessage('You seem to be offline.'), true);
-                return;
-            }
+            const showStatus = (html, isError = false) => {
+                statusBox.innerHTML = html;
+                statusBox.classList.toggle('is-error', isError);
+                statusBox.style.display = 'block';
+                statusBox.focus({ preventScroll: true });
+                statusBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            };
 
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending…';
-            successMessage.style.display = 'none';
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
 
-            // Slow connections get plenty of time, but not forever.
-            const controller = new AbortController();
-            const timer = setTimeout(() => controller.abort(), 45000);
-
-            try {
-                const response = await fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: encodeFormData(new FormData(form)),
-                    signal: controller.signal
-                });
-                if (!response.ok) {
-                    throw new Error(`Server replied ${response.status}`);
+                if (!navigator.onLine) {
+                    showStatus(failMessage('You seem to be offline.'), true);
+                    return;
                 }
-                form.reset();
-                showStatus('Thank you, your message was sent. We’ll be in touch shortly.');
-            } catch (error) {
-                const reason = error.name === 'AbortError'
-                    ? 'The connection is too slow right now and the message didn’t go through.'
-                    : 'Sorry, your message didn’t go through.';
-                showStatus(failMessage(reason), true);
-            } finally {
-                clearTimeout(timer);
-                submitButton.disabled = false;
-                submitButton.textContent = submitLabel;
-            }
-        });
+
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending…';
+                statusBox.style.display = 'none';
+
+                // Slow connections get plenty of time, but not forever.
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), 45000);
+
+                try {
+                    const response = await fetch('/', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: encodeFormData(new FormData(form)),
+                        signal: controller.signal
+                    });
+                    if (!response.ok) {
+                        throw new Error(`Server replied ${response.status}`);
+                    }
+                    form.reset();
+                    showStatus(successText);
+                } catch (error) {
+                    const reason = error.name === 'AbortError'
+                        ? 'The connection is too slow right now and it didn’t go through.'
+                        : 'Sorry, that didn’t go through.';
+                    showStatus(failMessage(reason), true);
+                } finally {
+                    clearTimeout(timer);
+                    submitButton.disabled = false;
+                    submitButton.textContent = submitLabel;
+                }
+            });
+        };
+
+        setUpForm(document.getElementById('contactForm'), document.getElementById('successMessage'),
+            'Thank you, your message was sent. We’ll be in touch shortly.');
+        const waitlistForm = document.getElementById('waitlistForm');
+        setUpForm(waitlistForm, document.getElementById('waitlistStatus'), waitlistForm?.dataset.success);
+
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
 
         const navToggle = document.querySelector('.nav-toggle');
         const navLinks = document.getElementById('primaryNav');
