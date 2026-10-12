@@ -249,6 +249,11 @@
             height: 100%;
         }
 
+        .hero-collage picture {
+            display: block;
+            height: 100%;
+        }
+
         .hero-collage img {
             width: 100%;
             height: 100%;
@@ -702,7 +707,14 @@
                 </div>
                 <div class="hero-media">
                     <div class="hero-collage">
-                        <img src="images/Hero_collage1.png" alt="Collage of sunrise, veggie beds, goats, and the Abiko ecolodge">
+                        <picture>
+                            <source type="image/webp"
+                                srcset="images/hero-collage-480.webp 480w, images/hero-collage-800.webp 800w, images/hero-collage-1080.webp 1080w"
+                                sizes="(max-width: 600px) 88vw, 540px">
+                            <img src="images/hero-collage-800.jpg" width="800" height="1000"
+                                fetchpriority="high" decoding="async"
+                                alt="Collage of sunrise, veggie beds, goats, and the Abiko ecolodge">
+                        </picture>
                     </div>
                 </div>
             </div>
