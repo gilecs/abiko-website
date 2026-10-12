@@ -1230,7 +1230,7 @@
             { src: 'farm_entrance', alt: 'Visitors arriving at the farm entrance.' },
             { src: 'bees', alt: 'Beekeeping frames rich with honey.' },
             { src: 'goat_barn', alt: 'Goats resting inside the barn.' },
-            { src: 'cow_barn', alt: 'Cows feeding inside the dairy barn.' },
+            { src: 'dairy_barn_2026', alt: 'Dairy cows at the feed trough in the stone barn.', pos: '50% 72%' },
             { src: 'cow', alt: 'Cow grazing on lush pasture.' },
             { src: 'produce', alt: 'Harvested vegetables ready for market.' },
             { src: 'produce_corn', alt: 'Corn cobs drying in the sun.' }            
@@ -1269,6 +1269,7 @@
                     gallerySource.srcset = `images/opt/${photo.src}-480.webp 480w, images/opt/${photo.src}-800.webp 800w`;
                 }
                 galleryImage.src = `images/opt/${photo.src}-800.jpg`;
+                galleryImage.style.objectPosition = photo.pos || '';
                 galleryImage.alt = photo.alt;
             }
             if (galleryProgress) {
