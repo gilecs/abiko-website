@@ -63,9 +63,7 @@
 
         .brand img {
             height: 48px;
-            width: 180px;
-            object-fit: contain;
-            border-radius: 12px;
+            width: auto;
         }
 
         .nav-links {
@@ -521,7 +519,15 @@
             box-shadow: var(--shadow);
         }
 
-        .detail-visual img:nth-child(2) {
+        .detail-visual picture {
+            display: contents;
+        }
+
+        .detail-visual source {
+            display: none;
+        }
+
+        .detail-visual picture:nth-child(2) img {
             width: 70%;
             height: 220px;
             position: absolute;
@@ -544,7 +550,7 @@
             margin-bottom: 0.5rem;
         }
 
-        .detail-copy .detail-visual img:nth-child(2) {
+        .detail-copy .detail-visual picture:nth-child(2) img {
             bottom: -10px;
         }
 
@@ -734,7 +740,7 @@
     <header>
         <nav class="container">
             <div class="brand" aria-label="Abiko Agritech">
-                <img src="images/Abiko-Logo-Color.jpg" alt="Abiko Agritech logo">
+                <picture><source type="image/webp" srcset="images/opt/logo-96.webp"><img src="images/opt/logo-96.png" width="125" height="48" alt="Abiko Agritech logo"></picture>
             </div>
             <ul id="primaryNav" class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -843,8 +849,8 @@
                     <article class="detail-collage single">
                         <div class="detail-copy">
                             <div class="detail-visual" aria-hidden="true">
-                                <img src="images/green_feed.jpeg" alt="">
-                                <img src="images/goats.jpeg" alt="">
+                                <picture><source type="image/webp" srcset="images/opt/green_feed-480.webp 480w, images/opt/green_feed-800.webp 800w" sizes="(max-width: 768px) 90vw, 1060px"><img src="images/opt/green_feed-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
+                                <picture><source type="image/webp" srcset="images/opt/goats-480.webp 480w, images/opt/goats-800.webp 800w" sizes="(max-width: 768px) 65vw, 740px"><img src="images/opt/goats-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
                             </div>
                         
                         <ul class="shop-products">
@@ -863,8 +869,8 @@
                     <article class="detail-collage single">
                         <div class="detail-copy">
                             <div class="detail-visual" aria-hidden="true">
-                                <img src="images/farm_area_hut.jpeg" alt="">
-                                <img src="images/green_feed3.jpeg" alt="">
+                                <picture><source type="image/webp" srcset="images/opt/farm_area_hut-480.webp 480w, images/opt/farm_area_hut-800.webp 800w" sizes="(max-width: 768px) 90vw, 1060px"><img src="images/opt/farm_area_hut-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
+                                <picture><source type="image/webp" srcset="images/opt/green_feed3-480.webp 480w, images/opt/green_feed3-800.webp 800w" sizes="(max-width: 768px) 65vw, 740px"><img src="images/opt/green_feed3-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
                             </div>
                             <ul class="shop-products">
                                 <li>🌄 <strong>Wake with the Farm</strong><br>Rise to exotic birdsong, cool morning air, and the farm stirring awake.</li>
@@ -880,8 +886,8 @@
                     <article class="detail-collage single">
                         <div class="detail-copy">
                             <div class="detail-visual" aria-hidden="true">
-                                <img src="images/farm_area.jpeg" alt="">
-                                <img src="images/produce_corn.jpeg" alt="">
+                                <picture><source type="image/webp" srcset="images/opt/farm_area-480.webp 480w, images/opt/farm_area-800.webp 800w" sizes="(max-width: 768px) 90vw, 1060px"><img src="images/opt/farm_area-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
+                                <picture><source type="image/webp" srcset="images/opt/produce_corn-480.webp 480w, images/opt/produce_corn-800.webp 800w" sizes="(max-width: 768px) 65vw, 740px"><img src="images/opt/produce_corn-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
                             </div>
                             <ul class="shop-products">
                                 <li>🧠 <strong>Spark Ideas & Build Skills</strong><br>Use the tranquil setting for trainings and retreats that boost creativity and collaboration.</li>
@@ -897,8 +903,8 @@
                     <article class="detail-collage single">
                         <div class="detail-copy">
                             <div class="detail-visual" aria-hidden="true">
-                                <img src="images/green_feed2.jpeg" alt="">
-                                <img src="images/produce_corn3.jpeg" alt="">
+                                <picture><source type="image/webp" srcset="images/opt/green_feed2-480.webp 480w, images/opt/green_feed2-800.webp 800w" sizes="(max-width: 768px) 90vw, 1060px"><img src="images/opt/green_feed2-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
+                                <picture><source type="image/webp" srcset="images/opt/produce_corn3-480.webp 480w, images/opt/produce_corn3-800.webp 800w" sizes="(max-width: 768px) 65vw, 740px"><img src="images/opt/produce_corn3-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
                             </div>                            
                             <ul class="shop-products">
                                 <li>🌿 <strong>Discover With Nature</strong><br>We don't assume - we observe. Guided by nature and supported by AI tools, we learn and share our findings.</li>
@@ -918,7 +924,7 @@
             </div>
             <div class="gallery-slider">
                 <div class="gallery-frame">
-                    <img id="galleryImage" src="images/Farm_view.jpeg" alt="Farm view overlooking Lake Hawassa">
+                    <picture><source id="gallerySource" type="image/webp" srcset="images/opt/farm_view-480.webp 480w, images/opt/farm_view-800.webp 800w" sizes="(max-width: 768px) 90vw, 1060px"><img id="galleryImage" src="images/opt/farm_view-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt="Sunset overlooking Lake Hawassa from Abiko farm."></picture>
                 </div>
                 <div class="gallery-controls">
                     <button type="button" id="galleryPrev" aria-label="Previous photo">‹</button>
@@ -1031,25 +1037,26 @@
         }
 
         const galleryPhotos = [
-            { src: 'images/Farm_view.jpeg', alt: 'Sunset overlooking Lake Hawassa from Abiko farm.' },
-            { src: 'images/morning_in_the farm.jpeg', alt: 'Morning light spilling over the farm path.' },
-            { src: 'images/green_feed.jpeg', alt: 'Feed crops thriving under shade.' },
-            { src: 'images/fruit_papays2.jpeg', alt: 'Papaya grove with morning light.' },
-            { src: 'images/green_feed3.jpeg', alt: 'Aquaculture pond surrounded by greenery.' },
-            { src: 'images/produce_corn3.jpeg', alt: 'Corn harvest stacked for drying.' },
-            { src: 'images/papaya_tree.jpeg', alt: 'Papaya trees bursting with fruit.' },
-            { src: 'images/farm_entrance.jpeg', alt: 'Visitors arriving at the farm entrance.' },
-            { src: 'images/bees.jpeg', alt: 'Beekeeping frames rich with honey.' },
-            { src: 'images/goat_barn.jpeg', alt: 'Goats resting inside the barn.' },
-            { src: 'images/cow_barn.jpeg', alt: 'Cows feeding inside the dairy barn.' },
-            { src: 'images/Cow.jpeg', alt: 'Cow grazing on lush pasture.' },
-            { src: 'images/produce.jpeg', alt: 'Harvested vegetables ready for market.' },
-            { src: 'images/produce_corn.jpeg', alt: 'Corn cobs drying in the sun.' }            
+            { src: 'farm_view', alt: 'Sunset overlooking Lake Hawassa from Abiko farm.' },
+            { src: 'morning_in_the_farm', alt: 'Morning light spilling over the farm path.' },
+            { src: 'green_feed', alt: 'Feed crops thriving under shade.' },
+            { src: 'fruit_papaya2', alt: 'Papaya grove with morning light.' },
+            { src: 'green_feed3', alt: 'Aquaculture pond surrounded by greenery.' },
+            { src: 'produce_corn3', alt: 'Corn harvest stacked for drying.' },
+            { src: 'papaya_tree', alt: 'Papaya trees bursting with fruit.' },
+            { src: 'farm_entrance', alt: 'Visitors arriving at the farm entrance.' },
+            { src: 'bees', alt: 'Beekeeping frames rich with honey.' },
+            { src: 'goat_barn', alt: 'Goats resting inside the barn.' },
+            { src: 'cow_barn', alt: 'Cows feeding inside the dairy barn.' },
+            { src: 'cow', alt: 'Cow grazing on lush pasture.' },
+            { src: 'produce', alt: 'Harvested vegetables ready for market.' },
+            { src: 'produce_corn', alt: 'Corn cobs drying in the sun.' }            
         ];
 
         const galleryImage = document.getElementById('galleryImage');
         const galleryProgress = document.getElementById('galleryProgress');
         const galleryDots = document.getElementById('galleryDots');
+        const gallerySource = document.getElementById('gallerySource');
         const galleryPrev = document.getElementById('galleryPrev');
         const galleryNext = document.getElementById('galleryNext');
         let galleryIndex = 0;
@@ -1075,7 +1082,10 @@
         function updateGallery(index) {
             const photo = galleryPhotos[index];
             if (galleryImage) {
-                galleryImage.src = photo.src;
+                if (gallerySource) {
+                    gallerySource.srcset = `images/opt/${photo.src}-480.webp 480w, images/opt/${photo.src}-800.webp 800w`;
+                }
+                galleryImage.src = `images/opt/${photo.src}-800.jpg`;
                 galleryImage.alt = photo.alt;
             }
             if (galleryProgress) {
