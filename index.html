@@ -334,69 +334,185 @@
             color: rgba(15, 31, 26, 0.75);
         }
 
-        .offerings {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-        }
 
-        .card {
-            background: var(--white);
-            border-radius: 28px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
+
+
+
+
+
+
+
+
+        /* Experiences: alternating photo-led sections */
+        .journey-nav {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            min-height: 260px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            padding: 0;
+            gap: 0.5rem;
+            margin: -1rem 0 clamp(2.5rem, 6vw, 4rem);
         }
 
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 18px;
-            background: rgba(127, 181, 140, 0.18);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: inset 0 0 0 1px rgba(15, 31, 26, 0.08);
-        }
-
-        .card-link {
-            margin-top: auto;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
+        .journey-nav a {
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(15, 31, 26, 0.15);
+            border-radius: 999px;
+            background: var(--white);
+            color: var(--dark);
+            font-size: 0.9rem;
             text-decoration: none;
-            font-weight: 600;
-            color: var(--mid);
         }
 
-        .card-link span {
-            transition: transform 0.2s ease;
+        .journey-nav a:hover {
+            border-color: var(--mid);
         }
 
-        .card-link:hover span {
-            transform: translateX(4px);
-        }
-
-        .metrics {
-            background: linear-gradient(120deg, #0f2019, #204034 65%, #7abb90);
-            color: var(--white);
-            border-radius: 36px;
-            padding: 3rem clamp(1.5rem, 4vw, 4rem);
-        }
-
-        .metrics-grid {
+        .feature {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: clamp(2rem, 6vw, 5.5rem);
+            align-items: center;
+            margin-bottom: clamp(4.5rem, 10vw, 7.5rem);
+            scroll-margin-top: 96px;
         }
 
-        .metric span {
-            font-size: 2.5rem;
-            font-weight: 600;
+        .feature.reverse .feature-media {
+            order: 2;
+        }
+
+        .feature-media {
+            position: relative;
+            padding-bottom: 2.5rem;
+        }
+
+        .feature-main img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            border-radius: 24px;
+        }
+
+        .feature-inset {
+            position: absolute;
+            right: -1.5rem;
+            bottom: 0;
+            width: 38%;
+            border: 6px solid var(--sand);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 18px 40px rgba(20, 37, 32, 0.18);
+        }
+
+        .feature.reverse .feature-inset {
+            right: auto;
+            left: -1.5rem;
+        }
+
+        .feature-inset img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+
+        .feature-label {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.75rem;
+            color: rgba(15, 31, 26, 0.6);
+        }
+
+        .feature-label .badge-soon {
+            margin: 0;
+            letter-spacing: 0.04em;
+        }
+
+        .feature h3 {
+            font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+            line-height: 1.12;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-lead {
+            font-size: 1.1rem;
+            color: rgba(15, 31, 26, 0.75);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            gap: 1.1rem;
+            padding-top: 1.4rem;
+            border-top: 1px solid rgba(15, 31, 26, 0.12);
+        }
+
+        .feature-list.two-col {
+            grid-template-columns: 1fr 1fr;
+            column-gap: 1.75rem;
+        }
+
+        .feature-list strong {
             display: block;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+
+        .feature-list span {
+            color: rgba(15, 31, 26, 0.72);
+            font-size: 0.97rem;
+        }
+
+        .feature .waitlist {
+            margin-top: 1.75rem;
+            scroll-margin-top: 96px;
+        }
+
+        .announce {
+            display: block;
+            padding: 0.55rem 1rem;
+            background: var(--mid);
+            color: var(--white);
+            text-align: center;
+            font-size: 0.88rem;
+            text-decoration: none;
+        }
+
+        .announce span {
+            color: var(--mint);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 800px) {
+            .feature {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .feature.reverse .feature-media {
+                order: 0;
+            }
+
+            .feature-inset,
+            .feature.reverse .feature-inset {
+                right: 0.75rem;
+                left: auto;
+                width: 40%;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .feature-list.two-col {
+                grid-template-columns: 1fr;
+            }
         }
 
         .gallery-slider {
@@ -498,115 +614,23 @@
             box-shadow: var(--shadow);
         }
 
-        .detail-section {
-            margin-top: 3rem;
-        }
 
-        .detail-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
 
-        .detail-anchor {
-            scroll-margin-top: 140px;
-        }
 
-        .detail-anchor-block {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
 
-        .detail-anchor-title {
-            font-size: 1.5rem;
-            letter-spacing: 0.02em;
-            color: var(--mid);
-        }
 
-        .detail-collage {
-            display: grid;
-            grid-template-columns: minmax(260px, 45%) 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
 
-        .detail-collage.single {
-            grid-template-columns: 1fr;
-        }
 
-        .detail-visual {
-            position: relative;
-            display: grid;
-            gap: 1rem;
-        }
 
-        .detail-visual img {
-            width: 100%;
-            border-radius: 28px;
-            object-fit: cover;
-            height: 260px;
-            box-shadow: var(--shadow);
-        }
 
-        .detail-visual picture {
-            display: contents;
-        }
 
-        .detail-visual source {
-            display: none;
-        }
 
-        .detail-visual picture:nth-child(2) img {
-            width: 70%;
-            height: 220px;
-            position: absolute;
-            right: -10%;
-            bottom: -20px;
-            border: 2px solid var(--sand);
-        }
 
-        .detail-copy {
-            background: var(--white);
-            padding: clamp(1.8rem, 3vw, 2.8rem);
-            border-radius: 28px;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
 
-        .detail-copy .detail-visual {
-            margin-bottom: 0.5rem;
-        }
 
-        .detail-copy .detail-visual picture:nth-child(2) img {
-            bottom: -10px;
-        }
 
-        .shop-products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin: 1.25rem 0;
-            list-style: none;
-            padding: 0;
-        }
 
-        .shop-products li {
-            background: rgba(127, 181, 140, 0.12);
-            border-radius: 18px;
-            padding: 0.9rem 1rem;
-            font-size: 0.95rem;
-        }
 
-        .shop-why {
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0 0;
-            display: grid;
-            gap: 0.4rem;
-        }
 
         form {
             display: grid;
@@ -835,6 +859,7 @@
     </style>
 </head>
 <body>
+    <a class="announce" href="#waitlist">Ecolodge opening spring 2027 · <span>Join the waitlist →</span></a>
     <header>
         <nav class="container">
             <div class="brand" aria-label="Abiko Agritech">
@@ -844,7 +869,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#experiences">Experiences</a></li>
                 <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Visit</a></li>
+                <li><a href="#detail-ecolodge">Ecolodge</a></li>
             </ul>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="primaryNav" aria-expanded="false">
                 <span></span>
@@ -872,7 +897,7 @@
                     <p>Gather, learn, and shop at Hawassa’s organic, sustainable farm. Flexible event spaces welcome workshops and celebrations, and our eco-lodge, opening in spring 2027, will let you stay and live farm life. Take home our fresh organic produce and livestock products to share with your loved ones.</p>
                     <div class="hero-cta">
                         <a class="btn-primary" href="#experiences">Experience Abiko</a>
-                        <a class="btn-link" href="#gallery">See the farm →</a>
+                        <a class="btn-link" href="#waitlist">Join the ecolodge waitlist →</a>
                     </div>
                 </div>
             </div>
@@ -883,159 +908,109 @@
                 <span>Farm Life Experiences</span>
                 <h2>Choose your Oasis Journey</h2>
             </div>
-            <div class="offerings">
-                <article class="card">
-                    <div class="card-icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 9h16l-1.5 11.5a2 2 0 0 1-2 1.5H9.5a2 2 0 0 1-2-1.5L6 9Z" stroke="#1f3a30" stroke-width="1.5" stroke-linejoin="round"/>
-                            <path d="M10 9c0-3 1.5-5 4-5s4 2 4 5" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                    </div>
+            <nav class="journey-nav" aria-label="Experiences">
+                <a href="#detail-shop">Explore Our Farm</a>
+                <a href="#detail-ecolodge">Ecolodge</a>
+                <a href="#detail-events">Convene Here</a>
+                <a href="#detail-learning">Measure Discovery</a>
+            </nav>
+
+            <article id="detail-shop" class="feature">
+                <div class="feature-media">
+                    <div class="feature-main"><picture><source type="image/webp" srcset="images/opt/feat-farm-480.webp 480w, images/opt/feat-farm-640.webp 640w, images/opt/feat-farm-800.webp 800w" sizes="(max-width: 800px) 92vw, 560px"><img src="images/opt/feat-farm-800.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Picking cherry tomatoes in the Abiko vegetable garden"></picture></div>
+                    <div class="feature-inset"><picture><source type="image/webp" srcset="images/opt/inset-chick-480.webp"><img src="images/opt/inset-chick-480.jpg" width="390" height="390" loading="lazy" decoding="async" alt="Chicks on an Abiko Agritech shirt"></picture></div>
+                </div>
+                <div class="feature-copy">
+                    <span class="feature-label">Produce &amp; livestock</span>
                     <h3>Explore Our Farm</h3>
-                    <p class="muted">Fresh from our farm to your table.</p>
-                    <a class="card-link" href="#detail-shop">Explore <span>→</span></a>
-                </article>
-                <article class="card">
-                    <div class="card-icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="m5 12 9-6 9 6v9.5a1.5 1.5 0 0 1-1.5 1.5H6.5A1.5 1.5 0 0 1 5 21.5V12Z" stroke="#1f3a30" stroke-width="1.5" stroke-linejoin="round"/>
-                            <path d="M11 23v-6h6v6" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                    <p class="feature-lead">Organic livestock and agriculture production, fresh from our farm to your table.</p>
+                    <ul class="feature-list two-col">
+                        <li><strong>Fresh Produce</strong><span>Seasonal greens, tomatoes, roots, herbs, and fruits.</span></li>
+                        <li><strong>Goat Meat</strong><span>Pasture-raised cuts: whole, half, or individual portions.</span></li>
+                        <li><strong>Farm Eggs</strong><span>Free-range chickens with rich, orange yolks.</span></li>
+                        <li><strong>Dairy</strong><span>Fresh milk, cream, butter, and cheese from pasture-raised cows.</span></li>
+                        <li><strong>Raw Honey</strong><span>Pure, unfiltered honey with seasonal floral notes.</span></li>
+                        <li><strong>Fish (Coming Soon)</strong><span>Aquaponic-raised freshwater fish.</span></li>
+                    </ul>
+                </div>
+            </article>
+
+            <article id="detail-ecolodge" class="feature reverse">
+                <div class="feature-media">
+                    <div class="feature-main"><picture><source type="image/webp" srcset="images/opt/feat-lodge-480.webp 480w, images/opt/feat-lodge-640.webp 640w, images/opt/feat-lodge-800.webp 800w" sizes="(max-width: 800px) 92vw, 560px"><img src="images/opt/feat-lodge-800.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Sunset over the tent at Abiko farm"></picture></div>
+                    <div class="feature-inset"><picture><source type="image/webp" srcset="images/opt/inset-hammock-480.webp"><img src="images/opt/inset-hammock-480.jpg" width="480" height="480" loading="lazy" decoding="async" alt="Relaxing in a hammock with a view toward Lake Hawassa"></picture></div>
+                </div>
+                <div class="feature-copy">
+                    <span class="feature-label">Farm stays <span class="badge-soon">Opening spring 2027</span></span>
+                    <h3>Experience Our Ecolodge</h3>
+                    <p class="feature-lead">Authentic farm immersion.</p>
+                    <ul class="feature-list">
+                        <li><strong>Wake with the Farm</strong><span>You’ll rise to exotic birdsong, cool morning air, and the farm stirring awake.</span></li>
+                        <li><strong>Immerse in Farm Life</strong><span>You’ll milk a cow, watch honey gathered from the comb, and join in tending the vibrant garden.</span></li>
+                        <li><strong>Taste the Farm</strong><span>You’ll savor vine-warm tomatoes, just-set cheeses, and honey tasting of wildflowers.</span></li>
+                        <li><strong>Reconnect with Nature</strong><span>You’ll meditate as sunrise and sunset glow over beautiful Lake Hawassa in the distance.</span></li>
+                    </ul>
+                    <div class="waitlist" id="waitlist">
+                        <h4>We’re building the ecolodge now, opening spring 2027. Want to be among the first guests?</h4>
+                        <p class="muted">Leave your email and we’ll let you know the moment bookings open.</p>
+                        <div class="success-message" id="waitlistStatus" role="status" aria-live="polite" tabindex="-1"></div>
+                        <form id="waitlistForm" class="waitlist-form" name="lodge-waitlist" method="POST" data-netlify="true" data-netlify-honeypot="bot-field"
+                            data-success="You’re on the list. We’ll email you as soon as the ecolodge opens.">
+                            <input type="hidden" name="form-name" value="lodge-waitlist">
+                            <p class="hidden-field">
+                                <label>Don’t fill this out if you're human <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+                            </p>
+                            <div>
+                                <label for="waitlist-name">Name</label>
+                                <input type="text" id="waitlist-name" name="name" autocomplete="name">
+                            </div>
+                            <div>
+                                <label for="waitlist-email">Email</label>
+                                <input type="email" id="waitlist-email" name="email" autocomplete="email" inputmode="email" required>
+                            </div>
+                            <label class="check">
+                                <input type="checkbox" name="farm_news" value="yes">
+                                <span>Also send me occasional farm news</span>
+                            </label>
+                            <button type="submit">Notify me</button>
+                        </form>
                     </div>
-                    <h3>Experience Our Ecolodge <span class="badge-soon">Opening spring 2027</span></h3>
-                    <p class="muted">Authentic farm life immersion.</p>
-                    <a class="card-link" href="#detail-ecolodge">Get notified <span>→</span></a>
-                </article>
-                <article class="card">
-                    <div class="card-icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="9" cy="10" r="2" stroke="#1f3a30" stroke-width="1.5"/>
-                            <circle cx="19" cy="7" r="2" stroke="#1f3a30" stroke-width="1.5"/>
-                            <path d="M6 22c0-3 2.5-6 5.5-6s5.5 3 5.5 6" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M17 16c0-2 1.5-3.5 3.5-3.5S24 14 24 16" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                    </div>
+                </div>
+            </article>
+
+            <article id="detail-events" class="feature">
+                <div class="feature-media">
+                    <div class="feature-main"><picture><source type="image/webp" srcset="images/opt/feat-convene-480.webp 480w, images/opt/feat-convene-640.webp 640w, images/opt/feat-convene-800.webp 800w" sizes="(max-width: 800px) 92vw, 560px"><img src="images/opt/feat-convene-800.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Guests at a traditional Ethiopian coffee ceremony on the farm"></picture></div>
+                    <div class="feature-inset"><picture><source type="image/webp" srcset="images/opt/inset-lunch-480.webp"><img src="images/opt/inset-lunch-480.jpg" width="480" height="480" loading="lazy" decoding="async" alt="A group sharing lunch under the event tent"></picture></div>
+                </div>
+                <div class="feature-copy">
+                    <span class="feature-label">Events &amp; retreats</span>
                     <h3>Convene Here</h3>
-                    <p class="muted">Venue for brainstorming, workshops & celebrations.</p>
-                    <a class="card-link" href="#detail-events">Explore <span>→</span></a>
-                </article>
-                <article class="card">
-                    <div class="card-icon" aria-hidden="true">
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 22.5h18" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M8 19v-6" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M13 19V9" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M18 19v-8" stroke="#1f3a30" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                    </div>
+                    <p class="feature-lead">Brainstorm, train, celebrate: a venue for workshops, retreats and celebrations.</p>
+                    <ul class="feature-list">
+                        <li><strong>Spark Ideas &amp; Build Skills</strong><span>Use the tranquil setting for trainings and retreats that boost creativity and collaboration.</span></li>
+                        <li><strong>Create Unforgettable Moments</strong><span>Celebrate milestones or host intimate ceremonies in serene gathering spaces.</span></li>
+                        <li><strong>Dare to be Unique</strong><span>Break from the usual and host your event with Lake Hawassa as a living backdrop.</span></li>
+                    </ul>
+                </div>
+            </article>
+
+            <article id="detail-learning" class="feature reverse">
+                <div class="feature-media">
+                    <div class="feature-main"><picture><source type="image/webp" srcset="images/opt/feat-discover-480.webp 480w, images/opt/feat-discover-640.webp 640w, images/opt/feat-discover-800.webp 800w" sizes="(max-width: 800px) 92vw, 560px"><img src="images/opt/feat-discover-800.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="A goat with her newborn twin kids"></picture></div>
+                    <div class="feature-inset"><picture><source type="image/webp" srcset="images/opt/inset-calf-480.webp"><img src="images/opt/inset-calf-480.jpg" width="480" height="480" loading="lazy" decoding="async" alt="A young dairy calf resting"></picture></div>
+                </div>
+                <div class="feature-copy">
+                    <span class="feature-label">Research &amp; community</span>
                     <h3>Measure Discovery</h3>
-                    <p class="muted">Research & apply scientific & cultural practices.</p>
-                    <a class="card-link" href="#detail-learning">Explore <span>→</span></a>
-                </article>
-            </div>
-        </section>
-
-        <section class="container detail-section" aria-label="Experience details">
-            <div class="section-heading">
-                                
-            </div>
-            <div class="detail-wrapper">
-                <div id="detail-shop" class="detail-anchor detail-anchor-block">
-                    <h3 class="detail-anchor-title">Explore Our Farm – Organic Livestock & Agriculture Production</h3>
-                    <article class="detail-collage single">
-                        <div class="detail-copy">
-                            <div class="detail-visual" aria-hidden="true">
-                                <picture><source type="image/webp" srcset="images/opt/green_feed-480.webp 480w, images/opt/green_feed-800.webp 800w" sizes="(max-width: 768px) 90vw, 1060px"><img src="images/opt/green_feed-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
-                                <picture><source type="image/webp" srcset="images/opt/goats-480.webp 480w, images/opt/goats-800.webp 800w" sizes="(max-width: 768px) 65vw, 740px"><img src="images/opt/goats-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
-                            </div>
-                        
-                        <ul class="shop-products">
-                            <li>🥬 <strong>Fresh Produce</strong><br>Seasonal greens, tomatoes, roots, herbs, and fruits.</li>
-                            <li>🥩 <strong>Goat Meat</strong><br>Pasture-raised cuts—whole, half, or individual portions.</li>
-                            <li>🥚 <strong>Farm Eggs</strong><br>Free-range chickens with rich, orange yolks.</li>
-                            <li>🥛 <strong>Dairy</strong><br>Fresh milk, cream, butter, and cheese from pasture-raised cows.</li>
-                            <li>🍯 <strong>Raw Honey</strong><br>Pure, unfiltered honey with seasonal floral notes.</li>
-                            <li>🐟 <strong>Fish (Coming Soon)</strong><br>Aquaponic-raised freshwater fish.</li>
-                        </ul>
-                    </div>
-                </article>
+                    <p class="feature-lead">Observe, measure, share. We research and apply scientific and cultural practices.</p>
+                    <ul class="feature-list">
+                        <li><strong>Discover With Nature</strong><span>We don’t assume, we observe. Guided by nature and supported by AI tools, we learn and share our findings.</span></li>
+                        <li><strong>Build With Community</strong><span>We partner with staff, experts, and universities to create space for internships and genuine community empowerment.</span></li>
+                        <li><strong>Share What Matters</strong><span>We publish what we learn, share openly, and let those insights spark action beyond our fields.</span></li>
+                    </ul>
                 </div>
-                <div id="detail-ecolodge" class="detail-anchor detail-anchor-block">
-                    <h3 class="detail-anchor-title">Experience Our Ecolodge – Authentic Farm Immersion <span class="badge-soon">Opening spring 2027</span></h3>
-                    <article class="detail-collage single">
-                        <div class="detail-copy">
-                            <div class="detail-visual" aria-hidden="true">
-                                <picture><source type="image/webp" srcset="images/opt/farm_area_hut-480.webp 480w, images/opt/farm_area_hut-800.webp 800w" sizes="(max-width: 768px) 90vw, 1060px"><img src="images/opt/farm_area_hut-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
-                                <picture><source type="image/webp" srcset="images/opt/green_feed3-480.webp 480w, images/opt/green_feed3-800.webp 800w" sizes="(max-width: 768px) 65vw, 740px"><img src="images/opt/green_feed3-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
-                            </div>
-                            <ul class="shop-products">
-                                <li>🌄 <strong>Wake with the Farm</strong><br>You’ll rise to exotic birdsong, cool morning air, and the farm stirring awake.</li>
-                                <li>🌾 <strong>Immerse in Farm Life</strong><br>You’ll milk a cow, watch honey gathered from the comb, and join in tending the vibrant garden.</li>
-                                <li>🍽️ <strong>Taste the Farm</strong><br>You’ll savor vine-warm tomatoes, just-set cheeses, and honey tasting of wildflowers.</li>
-                                <li>🌿 <strong>Reconnect with Nature</strong><br>You’ll meditate as sunrise and sunset glow over beautiful Lake Hawassa in the distance.</li>
-                            </ul>
-                            <div class="waitlist">
-                                <h4>We’re building the ecolodge now, opening spring 2027. Want to be among the first guests?</h4>
-                                <p class="muted">Leave your email and we’ll let you know the moment bookings open.</p>
-                                <div class="success-message" id="waitlistStatus" role="status" aria-live="polite" tabindex="-1"></div>
-                                <form id="waitlistForm" class="waitlist-form" name="lodge-waitlist" method="POST" data-netlify="true" data-netlify-honeypot="bot-field"
-                                    data-success="You’re on the list. We’ll email you as soon as the ecolodge opens.">
-                                    <input type="hidden" name="form-name" value="lodge-waitlist">
-                                    <p class="hidden-field">
-                                        <label>Don’t fill this out if you're human <input name="bot-field" tabindex="-1" autocomplete="off"></label>
-                                    </p>
-                                    <div>
-                                        <label for="waitlist-name">Name</label>
-                                        <input type="text" id="waitlist-name" name="name" autocomplete="name">
-                                    </div>
-                                    <div>
-                                        <label for="waitlist-email">Email</label>
-                                        <input type="email" id="waitlist-email" name="email" autocomplete="email" inputmode="email" required>
-                                    </div>
-                                    <label class="check">
-                                        <input type="checkbox" name="farm_news" value="yes">
-                                        <span>Also send me occasional farm news</span>
-                                    </label>
-                                    <button type="submit">Notify me</button>
-                                </form>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div id="detail-events" class="detail-anchor detail-anchor-block">
-                    <h3 class="detail-anchor-title">Convene Here – Brainstorm, Train, Celebrate</h3>
-                    <article class="detail-collage single">
-                        <div class="detail-copy">
-                            <div class="detail-visual" aria-hidden="true">
-                                <picture><source type="image/webp" srcset="images/opt/farm_area-480.webp 480w, images/opt/farm_area-800.webp 800w" sizes="(max-width: 768px) 90vw, 1060px"><img src="images/opt/farm_area-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
-                                <picture><source type="image/webp" srcset="images/opt/produce_corn-480.webp 480w, images/opt/produce_corn-800.webp 800w" sizes="(max-width: 768px) 65vw, 740px"><img src="images/opt/produce_corn-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
-                            </div>
-                            <ul class="shop-products">
-                                <li>🧠 <strong>Spark Ideas & Build Skills</strong><br>Use the tranquil setting for trainings and retreats that boost creativity and collaboration.</li>
-                                <li>👨‍👩‍👧‍👦 <strong>Create Unforgettable Moments</strong><br>Celebrate milestones or host intimate ceremonies in serene gathering spaces.</li>
-                                <li>🏞️ <strong>Dare to be Unique</strong><br>Break from the usual and host your event with Lake Hawassa as a living backdrop.</li>
-
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-                <div id="detail-learning" class="detail-anchor detail-anchor-block">
-                    <h3 class="detail-anchor-title">Measure Discovery – Observe, Measure, Share</h3>
-                    <article class="detail-collage single">
-                        <div class="detail-copy">
-                            <div class="detail-visual" aria-hidden="true">
-                                <picture><source type="image/webp" srcset="images/opt/green_feed2-480.webp 480w, images/opt/green_feed2-800.webp 800w" sizes="(max-width: 768px) 90vw, 1060px"><img src="images/opt/green_feed2-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
-                                <picture><source type="image/webp" srcset="images/opt/produce_corn3-480.webp 480w, images/opt/produce_corn3-800.webp 800w" sizes="(max-width: 768px) 65vw, 740px"><img src="images/opt/produce_corn3-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt=""></picture>
-                            </div>                            
-                            <ul class="shop-products">
-                                <li>🌿 <strong>Discover With Nature</strong><br>We don't assume - we observe. Guided by nature and supported by AI tools, we learn and share our findings.</li>
-                                <li>🤲 <strong>Build With Community </strong><br>We partner with staff, experts, and universities to create space for internships and genuine community empowerment.</li>
-                                <li>🌍 <strong>Share What Matters</strong><br>We publish what we learn, share openly, and let those insights spark action beyond our fields.</li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-            </div>
+            </article>
         </section>
 
         <section id="gallery" class="container gallery-section">
@@ -1054,7 +1029,7 @@
                 <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Scenes from the Farm slides"></div>
             </div>
             <div class="gallery-meta">
-                <span id="galleryProgress" class="gallery-progress" aria-live="polite">1 / 13</span>
+                <span id="galleryProgress" class="gallery-progress" aria-live="polite">1 / 17</span>
             </div>
         </section>
 
@@ -1079,7 +1054,7 @@
                 </div>
                 <div>
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Contact us, schedule a visit, volunteer, job opportunity, partnership, or describe your inquiry…" required></textarea>
+                    <textarea id="message" name="message" rows="5" placeholder="Questions, partnerships, volunteering, job opportunities, or anything else…" required></textarea>
                 </div>
                 <button type="submit">Send Request</button>
             </form>
@@ -1193,18 +1168,22 @@
 
         const galleryPhotos = [
             { src: 'farm_view', alt: 'Sunset overlooking Lake Hawassa from Abiko farm.' },
-            { src: 'morning_in_the_farm', alt: 'Morning light spilling over the farm path.' },
-            { src: 'green_feed', alt: 'Feed crops thriving under shade.' },
-            { src: 'fruit_papaya2', alt: 'Papaya grove with morning light.' },
-            { src: 'green_feed3', alt: 'Aquaculture pond surrounded by greenery.' },
-            { src: 'produce_corn3', alt: 'Corn harvest stacked for drying.' },
-            { src: 'papaya_tree', alt: 'Papaya trees bursting with fruit.' },
-            { src: 'farm_entrance', alt: 'Visitors arriving at the farm entrance.' },
-            { src: 'bees', alt: 'Beekeeping frames rich with honey.' },
+            { src: 'team_coffee', alt: 'The Abiko team preparing a coffee ceremony above Lake Hawassa.', pos: '50% 55%' },
             { src: 'goats_eating_2026', alt: 'Goats eating fresh-cut grass at the feeding trough.', pos: '50% 68%' },
+            { src: 'kid_nursing', alt: 'A newborn kid nursing in the goat barn.', pos: '50% 70%' },
+            { src: 'morning_in_the_farm', alt: 'Morning light spilling over the farm path.' },
+            { src: 'cabbages', alt: 'Rows of cabbage in the vegetable garden.', pos: '50% 60%' },
             { src: 'dairy_barn_2026', alt: 'Dairy cows at the feed trough in the stone barn.', pos: '50% 72%' },
-            { src: 'produce', alt: 'Harvested vegetables ready for market.' },
-            { src: 'produce_corn', alt: 'Corn cobs drying in the sun.' }            
+            { src: 'puppies', alt: 'Farm puppies resting in the shade.', pos: '50% 60%' },
+            { src: 'fruit_papaya2', alt: 'Papaya grove with morning light.' },
+            { src: 'honeycomb', alt: 'Fresh honeycomb from the farm’s hives.' },
+            { src: 'terrace', alt: 'The tree-shaded terrace in the morning sun.' },
+            { src: 'papaya_tree', alt: 'Papaya trees bursting with fruit.' },
+            { src: 'green_feed', alt: 'Feed crops thriving under shade.' },
+            { src: 'produce_corn3', alt: 'Corn harvest stacked for drying.' },
+            { src: 'farm_entrance', alt: 'Visitors arriving at the farm entrance.' },
+            { src: 'green_feed3', alt: 'Aquaculture pond surrounded by greenery.' },
+            { src: 'produce', alt: 'Harvested vegetables ready for market.' }
         ];
 
         const galleryImage = document.getElementById('galleryImage');
