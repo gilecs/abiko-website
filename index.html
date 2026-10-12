@@ -95,6 +95,7 @@
             font-size: 0.9rem;
             text-decoration: none;
             color: var(--dark);
+            white-space: nowrap;
         }
 
         .nav-toggle {
@@ -157,17 +158,17 @@
         .hero::after {
             content: '';
             position: absolute;
-            inset: clamp(32px, 6vw, 50px);
+            inset: clamp(20px, 5vw, 48px);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 32px;
+            border-radius: clamp(20px, 6vw, 32px);
             pointer-events: none;
         }
 
         .hero-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            padding: clamp(3.5rem, 6vw, 5rem) clamp(2.5rem, 7vw, 5.5rem) clamp(3.5rem, 6vw, 5rem);
+            gap: clamp(2rem, 5vw, 3.5rem);
+            padding: clamp(2.75rem, 6vw, 5rem) clamp(1.75rem, 6vw, 5.5rem) clamp(2.75rem, 6vw, 5rem);
             position: relative;
             z-index: 1;
             align-items: center;
@@ -240,13 +241,14 @@
             position: relative;
             display: grid;
             gap: 1.5rem;
+            align-content: start;
         }
 
         .hero-collage {
             border-radius: 32px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            height: 100%;
+            min-height: clamp(260px, 45vw, 420px);
         }
 
         .hero-collage picture {
@@ -270,6 +272,7 @@
             padding: 1.2rem 1.6rem;
             box-shadow: var(--shadow);
             width: 230px;
+            max-width: calc(100% - 2rem);
         }
 
         section {
@@ -399,21 +402,64 @@
 
         .gallery-controls button {
             pointer-events: auto;
-            background: rgba(255, 255, 255, 0.85);
+            background: transparent;
             border: none;
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(1.75rem, 4vw, 2.75rem);
+            line-height: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            margin: 0 1rem;
-            transition: background 0.2s ease;
+            margin: 0 1.5rem;
+            padding: 0.35rem;
+            text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+            transition: color 0.2s ease, transform 0.2s ease;
         }
 
         .gallery-controls button:hover {
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .gallery-dots {
+            position: absolute;
+            left: 50%;
+            bottom: 1rem;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.4rem;
+            pointer-events: none;
+        }
+
+        .gallery-dots button {
+            pointer-events: auto;
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            border: none;
+            background: rgba(255, 255, 255, 0.35);
+            padding: 0;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .gallery-dots button.is-active {
             background: var(--white);
+            transform: scale(1.25);
+        }
+
+        .gallery-meta {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+            color: rgba(15, 31, 26, 0.75);
+        }
+
+        .gallery-progress {
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.05em;
         }
 
 
@@ -627,32 +673,9 @@
                 flex-wrap: nowrap;
             }
 
-            .hero-card {
-                position: relative;
-                bottom: 0;
-                width: auto;
-                margin-top: 1rem;
-            }
-
-            .hero-collage {
-                grid-template-columns: 1fr;
-            }
-
-            }
-
-        @media (max-width: 600px) {
-            .hero {
-                margin: 1.5rem auto 2rem;
-            }
-
-            .hero::after {
-                inset: clamp(20px, 7vw, 28px);
-                border-radius: 24px;
-            }
-
             .hero-grid {
                 grid-template-columns: 1fr;
-                padding: 3.5rem 2.5rem 4rem;
+                padding: clamp(2.5rem, 9vw, 3.75rem) clamp(1.5rem, 8vw, 3rem) clamp(2.5rem, 9vw, 3.75rem);
                 gap: 2rem;
             }
 
@@ -661,15 +684,48 @@
                 bottom: 0;
                 right: 0;
                 width: 100%;
-                margin-top: 1rem;
+                max-width: none;
+                margin-top: 0.75rem;
             }
 
             .hero-cta {
+                flex-direction: column;
+                align-items: stretch;
                 gap: 0.75rem;
             }
 
             .hero-cta a {
-                flex: 1 1 50%;
+                width: 100%;
+            }
+
+            }
+
+        @media (max-width: 600px) {
+            .hero {
+                margin: 1.25rem auto 1.75rem;
+            }
+
+            .hero::after {
+                inset: clamp(14px, 8vw, 20px);
+                border-radius: 20px;
+            }
+
+            .hero-grid {
+                padding: 2.25rem 1.5rem 2.75rem;
+                gap: 1.5rem;
+            }
+
+            .hero-card {
+                margin-top: 0.5rem;
+                padding: 1rem 1.25rem;
+            }
+
+            .hero-collage {
+                min-height: 240px;
+            }
+
+            .hero-cta a {
+                width: 100%;
             }
         }
     </style>
@@ -868,6 +924,10 @@
                     <button type="button" id="galleryPrev" aria-label="Previous photo">‹</button>
                     <button type="button" id="galleryNext" aria-label="Next photo">›</button>
                 </div>
+                <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Scenes from the Farm slides"></div>
+            </div>
+            <div class="gallery-meta">
+                <span id="galleryProgress" class="gallery-progress" aria-live="polite">1 / 14</span>
             </div>
         </section>
 
@@ -988,23 +1048,49 @@
         ];
 
         const galleryImage = document.getElementById('galleryImage');
-        const galleryCaption = document.getElementById('galleryCaption');
         const galleryProgress = document.getElementById('galleryProgress');
+        const galleryDots = document.getElementById('galleryDots');
         const galleryPrev = document.getElementById('galleryPrev');
         const galleryNext = document.getElementById('galleryNext');
         let galleryIndex = 0;
+        let galleryDotButtons = [];
+
+        if (galleryDots) {
+            const fragment = document.createDocumentFragment();
+            galleryPhotos.forEach((_, index) => {
+                const dotButton = document.createElement('button');
+                dotButton.type = 'button';
+                dotButton.className = 'gallery-dot';
+                dotButton.setAttribute('aria-label', `Go to photo ${index + 1}`);
+                dotButton.addEventListener('click', () => {
+                    galleryIndex = index;
+                    updateGallery(galleryIndex);
+                });
+                fragment.appendChild(dotButton);
+            });
+            galleryDots.appendChild(fragment);
+            galleryDotButtons = Array.from(galleryDots.querySelectorAll('button'));
+        }
 
         function updateGallery(index) {
             const photo = galleryPhotos[index];
-            galleryImage.src = photo.src;
-            galleryImage.alt = photo.alt;
-            galleryCaption.textContent = photo.alt;
-            galleryProgress.textContent = `${index + 1} / ${galleryPhotos.length}`;
+            if (galleryImage) {
+                galleryImage.src = photo.src;
+                galleryImage.alt = photo.alt;
+            }
+            if (galleryProgress) {
+                galleryProgress.textContent = `${index + 1} / ${galleryPhotos.length}`;
+            }
+            if (galleryDotButtons.length) {
+                galleryDotButtons.forEach((dot, dotIndex) => {
+                    const isActive = dotIndex === index;
+                    dot.classList.toggle('is-active', isActive);
+                    dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+                });
+            }
         }
 
-        if (galleryImage && galleryCaption && galleryProgress) {
-            updateGallery(galleryIndex);
-        }
+        updateGallery(galleryIndex);
 
         galleryPrev?.addEventListener('click', () => {
             galleryIndex = (galleryIndex - 1 + galleryPhotos.length) % galleryPhotos.length;
