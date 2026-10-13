@@ -33,3 +33,10 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Card source and print files live in the repo but aren't served publicly.
+[[redirects]]
+  from = "/cards/*"
+  to = "/404"
+  status = 404
+  force = true
