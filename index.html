@@ -573,6 +573,28 @@
             aspect-ratio: 16 / 9;
         }
 
+        .gallery-frame {
+            position: relative;
+        }
+
+        .gallery-frame.is-loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 34px;
+            height: 34px;
+            margin: -17px 0 0 -17px;
+            border: 3px solid rgba(255, 255, 255, 0.35);
+            border-top-color: var(--white);
+            border-radius: 50%;
+            animation: gallery-spin 0.8s linear infinite;
+        }
+
+        @keyframes gallery-spin {
+            to { transform: rotate(360deg); }
+        }
+
         .gallery-frame img {
             width: 100%;
             height: 100%;
@@ -1157,7 +1179,7 @@
             </div>
             <div class="gallery-slider" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Scenes from the Farm. Use the left and right arrow keys or swipe to change photos.">
                 <div class="gallery-frame">
-                    <picture><source id="gallerySource" type="image/webp" srcset="images/opt/farm_view-480.webp 480w, images/opt/farm_view-800.webp 800w" sizes="(max-width: 768px) 90vw, 1060px"><img id="galleryImage" src="images/opt/farm_view-800.jpg" width="800" height="1067" loading="lazy" decoding="async" alt="Sunset overlooking Lake Hawassa from Abiko farm."></picture>
+                    <picture><source id="gallerySource" type="image/webp" srcset="images/opt/g-farm_view-480.webp 480w, images/opt/g-farm_view-800.webp 800w" sizes="(max-width: 768px) 92vw, 1060px"><img id="galleryImage" src="images/opt/g-farm_view-800.jpg" width="800" height="450" loading="lazy" decoding="async" alt="Sunset overlooking Lake Hawassa from Abiko farm."></picture>
                 </div>
                 <div class="gallery-controls">
                     <button type="button" id="galleryPrev" aria-label="Previous photo">‹</button>
@@ -1327,13 +1349,13 @@
 
         const galleryPhotos = [
             { src: 'farm_view', alt: 'Sunset overlooking Lake Hawassa from Abiko farm.' },
-            { src: 'team_coffee', alt: 'The Abiko team preparing a coffee ceremony above Lake Hawassa.', pos: '50% 55%' },
-            { src: 'goats_eating_2026', alt: 'Goats eating fresh-cut grass at the feeding trough.', pos: '50% 68%' },
-            { src: 'kid_nursing', alt: 'A newborn kid nursing in the goat barn.', pos: '50% 70%' },
+            { src: 'team_coffee', alt: 'The Abiko team preparing a coffee ceremony above Lake Hawassa.' },
+            { src: 'goats_eating_2026', alt: 'Goats eating fresh-cut grass at the feeding trough.' },
+            { src: 'kid_nursing', alt: 'A newborn kid nursing in the goat barn.' },
             { src: 'morning_in_the_farm', alt: 'Morning light spilling over the farm path.' },
-            { src: 'cabbages', alt: 'Rows of cabbage in the vegetable garden.', pos: '50% 60%' },
-            { src: 'dairy_barn_2026', alt: 'Dairy cows at the feed trough in the stone barn.', pos: '50% 72%' },
-            { src: 'puppies', alt: 'Farm puppies resting in the shade.', pos: '50% 60%' },
+            { src: 'cabbages', alt: 'Rows of cabbage in the vegetable garden.' },
+            { src: 'dairy_barn_2026', alt: 'Dairy cows at the feed trough in the stone barn.' },
+            { src: 'puppies', alt: 'Farm puppies resting in the shade.' },
             { src: 'fruit_papaya2', alt: 'Papaya grove with morning light.' },
             { src: 'honeycomb', alt: 'Fresh honeycomb from the farm’s hives.' },
             { src: 'terrace', alt: 'The tree-shaded terrace in the morning sun.' },
@@ -1350,6 +1372,7 @@
         const galleryDots = document.getElementById('galleryDots');
         const gallerySource = document.getElementById('gallerySource');
         const galleryPrev = document.getElementById('galleryPrev');
+        const galleryFrame = document.querySelector('.gallery-frame');
         const galleryNext = document.getElementById('galleryNext');
         let galleryIndex = 0;
         let galleryDotButtons = [];
@@ -1371,15 +1394,47 @@
             galleryDotButtons = Array.from(galleryDots.querySelectorAll('button'));
         }
 
-        function updateGallery(index) {
+        // Gallery photos are pre-cropped to the frame (g-*), so only the visible part is downloaded.
+        const gallerySizes = '(max-width: 768px) 92vw, 1060px';
+        const gallerySrcset = (src) => `images/opt/g-${src}-480.webp 480w, images/opt/g-${src}-800.webp 800w`;
+        const galleryJpg = (src) => `images/opt/g-${src}-800.jpg`;
+        const galleryCache = new Map();
+        let galleryActivated = false;
+        let galleryRequest = 0;
+
+        // Start downloading a photo in the background (same size the browser would pick).
+        function loadGalleryPhoto(index) {
+            const src = galleryPhotos[index].src;
+            if (!galleryCache.has(src)) {
+                const img = new Image();
+                img.decoding = 'async';
+                img.sizes = gallerySizes;
+                img.srcset = gallerySrcset(src);
+                img.src = galleryJpg(src);
+                const ready = img.decode ? img.decode().catch(() => {}) : Promise.resolve();
+                galleryCache.set(src, ready);
+            }
+            return galleryCache.get(src);
+        }
+
+        function preloadNeighbours(index) {
+            loadGalleryPhoto((index + 1) % galleryPhotos.length);
+            loadGalleryPhoto((index - 1 + galleryPhotos.length) % galleryPhotos.length);
+        }
+
+        async function updateGallery(index) {
             const photo = galleryPhotos[index];
-            if (galleryImage) {
-                if (gallerySource) {
-                    gallerySource.srcset = `images/opt/${photo.src}-480.webp 480w, images/opt/${photo.src}-800.webp 800w`;
-                }
-                galleryImage.src = `images/opt/${photo.src}-800.jpg`;
-                galleryImage.style.objectPosition = photo.pos || '';
+            const request = ++galleryRequest;
+            if (galleryImage && galleryActivated) {
+                const slow = setTimeout(() => galleryFrame?.classList.add('is-loading'), 250);
+                await loadGalleryPhoto(index);
+                clearTimeout(slow);
+                galleryFrame?.classList.remove('is-loading');
+                if (request !== galleryRequest) return; // a newer tap won
+                if (gallerySource) gallerySource.srcset = gallerySrcset(photo.src);
+                galleryImage.src = galleryJpg(photo.src);
                 galleryImage.alt = photo.alt;
+                preloadNeighbours(index);
             }
             if (galleryProgress) {
                 galleryProgress.textContent = `${index + 1} / ${galleryPhotos.length}`;
@@ -1394,6 +1449,21 @@
         }
 
         updateGallery(galleryIndex);
+
+        const activateGallery = () => {
+            if (galleryActivated) return;
+            galleryActivated = true;
+            loadGalleryPhoto(galleryIndex);
+            preloadNeighbours(galleryIndex);
+        };
+        if ('IntersectionObserver' in window && galleryFrame) {
+            const io = new IntersectionObserver((entries) => {
+                if (entries.some(e => e.isIntersecting)) { activateGallery(); io.disconnect(); }
+            }, { rootMargin: '400px 0px' });
+            io.observe(galleryFrame);
+        } else {
+            activateGallery();
+        }
 
         galleryPrev?.addEventListener('click', () => {
             galleryIndex = (galleryIndex - 1 + galleryPhotos.length) % galleryPhotos.length;
