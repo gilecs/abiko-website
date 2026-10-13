@@ -8,18 +8,18 @@ THEMES = {
     'abiko': {
         'vars': '--bg: #f8f5ef; --ink: #0f1f1a; --muted: rgba(15, 31, 26, 0.62); --accent: #1f3a30; --on-accent: #ffffff; '
                 '--soft: #e4efe6; --line: rgba(15, 31, 26, 0.12); --logo-bg: #ffffff; --logo-pad: 6px 12px; '
-                "--font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; --wordmark-font: var(--font);",
+                "--font: 'Inter', 'Noto Sans Ethiopic', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; --wordmark-font: var(--font);",
         'theme_color': '#1f3a30',
-        'font_face': "@font-face { font-family: 'Inter'; font-weight: 400 600; font-display: swap; src: url('/fonts/inter-latin-400-600.woff2') format('woff2'); }",
+        'font_face': "@font-face { font-family: 'Inter'; font-weight: 400 600; font-display: swap; src: url('/fonts/inter-latin-400-600.woff2') format('woff2'); } @font-face { font-family: 'Noto Sans Ethiopic'; font-weight: 400 600; font-display: swap; src: url('/fonts/noto-ethiopic-400-600.woff2') format('woff2'); unicode-range: U+1200-137F; }",
         'head': '<link rel="preload" href="/fonts/inter-latin-400-600.woff2" as="font" type="font/woff2" crossorigin>\n    <link rel="icon" href="/favicon.ico" sizes="any">\n    <link rel="apple-touch-icon" href="/apple-touch-icon.png">',
         'mark': '<picture><source type="image/webp" srcset="/images/opt/logo-96.webp"><img class="brand-logo" src="/images/opt/logo-96.png" width="125" height="48" alt="Abiko Agritech"></picture>',
     },
     'colab': {
         'vars': '--bg: #F6F3EC; --ink: #2b211b; --muted: rgba(43, 33, 27, 0.62); --accent: #5a3a26; --on-accent: #F6F3EC; '
                 '--soft: #ebe2d4; --line: rgba(43, 33, 27, 0.12); '
-                "--font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; --wordmark-font: Georgia, 'Times New Roman', serif;",
+                "--font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Ethiopic', sans-serif; --wordmark-font: Georgia, 'Times New Roman', serif;",
         'theme_color': '#5a3a26',
-        'font_face': '',
+        'font_face': "@font-face { font-family: 'Noto Sans Ethiopic'; font-weight: 400 600; font-display: swap; src: url('/abby/noto-ethiopic-400-600.woff2') format('woff2'); unicode-range: U+1200-137F; }",
         'head': '',
         'mark': '<div class="wordmark" aria-label="Cōlab Yard, Hawassa">Cōlab Yard<small>Hawassa</small></div>',
     },
@@ -29,7 +29,9 @@ CARDS = {
     # path (relative to output root) : (theme, data)
     'abiko/abby/index.html': ('abiko', {
         "name": "Abby",
+        "name_am": "",
         "title": "Title goes here",
+        "title_am": "",
         "company": "Abiko Agritech",
         "phone": "+251 900 000 000",
         "whatsapp": True,
@@ -43,13 +45,15 @@ CARDS = {
         "photo": ""
     }),
     'abiko/david/index.html': ('abiko', {
-        "name": "David",
-        "title": "Title goes here",
-        "company": "Abiko Agritech",
-        "phone": "+251 900 000 000",
+        "name": "Dawit Makonnen",
+        "name_am": "ዳዊት መኮንን",
+        "title": "Founder & Managing Director",
+        "title_am": "መሥራች እና ዋና ሥራ አስኪያጅ",
+        "company": "Abiko Farm",
+        "phone": "+251 91297033",
         "whatsapp": True,
-        "email": "name@abikoagritech.com",
-        "website": "https://abikoagritech.com",
+        "email": "dmakonn1@gmail.com",
+        "website": "https://www.abikoagritech.com",
         "linkedin": "",
         "instagram": "",
         "facebook": "https://www.facebook.com/abikoagritech",
@@ -59,7 +63,9 @@ CARDS = {
     }),
     'colab/abby/index.html': ('colab', {
         "name": "Abby",
+        "name_am": "",
         "title": "Title goes here",
+        "title_am": "",
         "company": "Cōlab Yard",
         "phone": "+251 900 000 000",
         "whatsapp": True,

@@ -14,7 +14,7 @@ Photos: add a square photo (about 400x400, under 60 KB) to `images/cards/`, then
 
 ## Rebuild everything (pages, QR codes, print PDFs)
 Edit the details in `build_cards.py`, then:
-    python3 build_cards.py out && python3 build_print.py print
+    python3 build_cards.py out && python3 build_print.py print && python3 build_phone_qr.py print
 
 ## Print files
 `print/*-print.pdf`: 2 pages (front, back), 3.75 x 2.25 in = 3.5 x 2 in card + 0.125 in bleed.

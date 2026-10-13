@@ -93,6 +93,16 @@
             color: var(--muted);
         }
 
+        .am {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-top: 0.15rem;
+        }
+
+        .am-role {
+            margin-top: 0.1rem;
+        }
+
         .save {
             display: flex;
             align-items: center;
@@ -196,7 +206,9 @@ __CARD_JSON__
         <section class="person">
             <img class="photo" id="photo" width="128" height="128" alt="">
             <h1 id="name"></h1>
+            <p class="am" id="name_am" lang="am"></p>
             <p class="role" id="role"></p>
+            <p class="role am-role" id="title_am" lang="am"></p>
         </section>
         <button class="save" id="save" type="button">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
@@ -228,6 +240,10 @@ __CARD_JSON__
         document.title = `${d.name} | ${d.company}`;
         $('name').textContent = d.name;
         $('role').textContent = [d.title, d.company].filter(Boolean).join(' · ');
+        $('name_am').textContent = d.name_am || '';
+        $('title_am').textContent = d.title_am || '';
+        if (!d.name_am) $('name_am').remove();
+        if (!d.title_am) $('title_am').remove();
 
         // Photo, or initials if no photo yet
         const initials = d.name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
@@ -268,14 +284,15 @@ __CARD_JSON__
             const lines = [
                 'BEGIN:VCARD', 'VERSION:3.0',
                 `N:${last};${first};;;`, `FN:${d.name}`,
+                d.name_am && `NICKNAME:${d.name_am}`,
                 d.company && `ORG:${d.company}`,
                 d.title && `TITLE:${d.title}`,
                 phone && `TEL;TYPE=CELL:${phone}`,
                 d.email && `EMAIL;TYPE=WORK:${d.email}`,
                 d.website && `URL:${d.website}`,
                 d.linkedin && `X-SOCIALPROFILE;TYPE=linkedin:${d.linkedin}`,
-                d.location && `ADR;TYPE=WORK:;;;${d.location.split(',')[0].trim()};;;${(d.location.split(',')[1] || '').trim()}`,
-                `NOTE:${d.company}. Card: ${location.href.split('#')[0]}`
+                d.location && (() => { const p = d.location.split(',').map((x) => x.trim()); const country = p.length > 1 ? p.pop() : ''; const city = p.pop() || ''; return `ADR;TYPE=WORK:;;${p.join(', ')};${city};;;${country}`; })(),
+                `NOTE:${d.company}. Card: ${location.origin}${location.pathname}`
             ];
             if (d.photo) {
                 try {

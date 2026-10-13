@@ -10,9 +10,9 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <style>
-        @font-face { font-family: 'Inter'; font-weight: 400 600; font-display: swap; src: url('/fonts/inter-latin-400-600.woff2') format('woff2'); }
+        @font-face { font-family: 'Inter'; font-weight: 400 600; font-display: swap; src: url('/fonts/inter-latin-400-600.woff2') format('woff2'); } @font-face { font-family: 'Noto Sans Ethiopic'; font-weight: 400 600; font-display: swap; src: url('/fonts/noto-ethiopic-400-600.woff2') format('woff2'); unicode-range: U+1200-137F; }
         :root {
-            --bg: #f8f5ef; --ink: #0f1f1a; --muted: rgba(15, 31, 26, 0.62); --accent: #1f3a30; --on-accent: #ffffff; --soft: #e4efe6; --line: rgba(15, 31, 26, 0.12); --logo-bg: #ffffff; --logo-pad: 6px 12px; --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; --wordmark-font: var(--font);
+            --bg: #f8f5ef; --ink: #0f1f1a; --muted: rgba(15, 31, 26, 0.62); --accent: #1f3a30; --on-accent: #ffffff; --soft: #e4efe6; --line: rgba(15, 31, 26, 0.12); --logo-bg: #ffffff; --logo-pad: 6px 12px; --font: 'Inter', 'Noto Sans Ethiopic', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; --wordmark-font: var(--font);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -93,6 +93,16 @@
         .role {
             margin-top: 0.3rem;
             color: var(--muted);
+        }
+
+        .am {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-top: 0.15rem;
+        }
+
+        .am-role {
+            margin-top: 0.1rem;
         }
 
         .save {
@@ -192,7 +202,9 @@
     <script id="card-data" type="application/json">
 {
         "name": "Abby",
+        "name_am": "",
         "title": "Title goes here",
+        "title_am": "",
         "company": "Abiko Agritech",
         "phone": "+251 900 000 000",
         "whatsapp": true,
@@ -212,7 +224,9 @@
         <section class="person">
             <img class="photo" id="photo" width="128" height="128" alt="">
             <h1 id="name"></h1>
+            <p class="am" id="name_am" lang="am"></p>
             <p class="role" id="role"></p>
+            <p class="role am-role" id="title_am" lang="am"></p>
         </section>
         <button class="save" id="save" type="button">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
@@ -244,6 +258,10 @@
         document.title = `${d.name} | ${d.company}`;
         $('name').textContent = d.name;
         $('role').textContent = [d.title, d.company].filter(Boolean).join(' · ');
+        $('name_am').textContent = d.name_am || '';
+        $('title_am').textContent = d.title_am || '';
+        if (!d.name_am) $('name_am').remove();
+        if (!d.title_am) $('title_am').remove();
 
         // Photo, or initials if no photo yet
         const initials = d.name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
@@ -284,14 +302,15 @@
             const lines = [
                 'BEGIN:VCARD', 'VERSION:3.0',
                 `N:${last};${first};;;`, `FN:${d.name}`,
+                d.name_am && `NICKNAME:${d.name_am}`,
                 d.company && `ORG:${d.company}`,
                 d.title && `TITLE:${d.title}`,
                 phone && `TEL;TYPE=CELL:${phone}`,
                 d.email && `EMAIL;TYPE=WORK:${d.email}`,
                 d.website && `URL:${d.website}`,
                 d.linkedin && `X-SOCIALPROFILE;TYPE=linkedin:${d.linkedin}`,
-                d.location && `ADR;TYPE=WORK:;;;${d.location.split(',')[0].trim()};;;${(d.location.split(',')[1] || '').trim()}`,
-                `NOTE:${d.company}. Card: ${location.href.split('#')[0]}`
+                d.location && (() => { const p = d.location.split(',').map((x) => x.trim()); const country = p.length > 1 ? p.pop() : ''; const city = p.pop() || ''; return `ADR;TYPE=WORK:;;${p.join(', ')};${city};;;${country}`; })(),
+                `NOTE:${d.company}. Card: ${location.origin}${location.pathname}`
             ];
             if (d.photo) {
                 try {
