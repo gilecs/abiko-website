@@ -28,12 +28,13 @@ body{{width:1170px;height:2532px;background:{t["bg"]};color:{t["fg"]};font-famil
 .qr{{margin-top:120px;width:860px;height:860px;background:#fff;border-radius:56px;padding:70px}}
 .qr svg{{width:100%;height:100%;display:block}}
 h1{{font-size:96px;font-weight:600;margin-top:110px;letter-spacing:-.01em}}
+.co{{font-size:44px;font-weight:600;margin-top:18px}}
 .am{{font-size:54px;font-weight:500;margin-top:10px}}
 .role{{font-size:44px;color:{t["sub"]};margin-top:14px}}
 .cta{{font-size:46px;margin-top:80px;font-weight:600}}
 .url{{font-size:38px;color:{t["sub"]};margin-top:12px}}
 </style></head><body>{t["mark"]}<div class="qr">{qr}</div>
-<h1>{d["name"]}</h1>{f'<div class="am">{d["name_am"]}</div>' if d.get("name_am") else ""}<div class="role">{" · ".join(x for x in [d["title"],d["company"]] if x)}</div>{f'<div class="role">{d["title_am"]}</div>' if d.get("title_am") else ""}
+<h1>{d["name"]}</h1>{f'<div class="am">{d["name_am"]}</div>' if d.get("name_am") else ""}<div class="role">{d["title"]}</div>{f'<div class="role">{d["title_am"]}</div>' if d.get("title_am") else ""}<div class="co">{d["company"]}</div>
 <div class="cta">Scan to save my contact</div><div class="url">{url.replace("https://","")}</div></body></html>'''
             await pg.set_content(html,wait_until='networkidle')
             f=f'{OUT}/{theme}-{slug}-phone-qr.png'; await pg.screenshot(path=f); print(f)
