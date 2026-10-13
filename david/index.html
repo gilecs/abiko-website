@@ -126,6 +126,7 @@
             font: inherit;
             font-weight: 600;
             font-size: 1.05rem;
+            text-decoration: none;
             cursor: pointer;
         }
 
@@ -207,6 +208,8 @@
         ======================================================
         EDIT THIS CARD HERE. Change the values in quotes below.
         Leave a value empty ("") to hide that button or link.
+        The "Save contact" file (.vcf) is built from cards/build_cards.py:
+        after changing details, update them there too and rebuild (see cards/README.md).
         "whatsapp": true makes the phone number open WhatsApp.
         ======================================================
     -->
@@ -241,10 +244,10 @@
             <p class="role am-role" id="title_am" lang="am"></p>
             <p class="company" id="company"></p>
         </section>
-        <button class="save" id="save" type="button">
+        <a class="save" id="save" href="dawit-makonnen.vcf" download="dawit-makonnen.vcf" type="text/vcard">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
             Save contact
-        </button>
+        </a>
         <nav class="actions" id="actions" aria-label="Contact"></nav>
         <ul class="links" id="links"></ul>
         <footer id="footer"></footer>
@@ -311,41 +314,7 @@
 
         $('footer').textContent = d.location || '';
 
-        // Save contact: builds a vCard so the details go straight into the phone's contacts
-        $('save').addEventListener('click', async () => {
-            const parts = d.name.trim().split(/\s+/);
-            const last = parts.length > 1 ? parts.pop() : '';
-            const first = parts.join(' ');
-            const lines = [
-                'BEGIN:VCARD', 'VERSION:3.0',
-                `N:${last};${first};;;`, `FN:${d.name}`,
-                d.name_am && `NICKNAME:${d.name_am}`,
-                d.company && `ORG:${d.company}`,
-                d.title && `TITLE:${d.title}`,
-                phone && `TEL;TYPE=CELL:${phone}`,
-                d.email && `EMAIL;TYPE=WORK:${d.email}`,
-                d.website && `URL:${d.website}`,
-                d.linkedin && `X-SOCIALPROFILE;TYPE=linkedin:${d.linkedin}`,
-                d.telegram && `X-SOCIALPROFILE;TYPE=telegram:https://t.me/${d.telegram.replace(/^@/, '')}`,
-                d.location && (() => { const p = d.location.split(',').map((x) => x.trim()); const country = p.length > 1 ? p.pop() : ''; const city = p.pop() || ''; return `ADR;TYPE=WORK:;;${p.join(', ')};${city};;;${country}`; })(),
-                `NOTE:${d.company}. Card: ${location.origin}${location.pathname}`
-            ];
-            if (d.photo) {
-                try {
-                    const blob = await (await fetch(d.photo)).blob();
-                    const b64 = await new Promise((ok) => { const r = new FileReader(); r.onload = () => ok(r.result.split(',')[1]); r.readAsDataURL(blob); });
-                    lines.push(`PHOTO;ENCODING=b;TYPE=JPEG:${b64}`);
-                } catch (e) { /* save without photo */ }
-            }
-            lines.push('END:VCARD');
-            const vcf = new Blob([lines.filter(Boolean).join('\r\n') + '\r\n'], { type: 'text/vcard;charset=utf-8' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(vcf);
-            a.download = `${d.name.replace(/\s+/g, '-')}.vcf`;
-            document.body.appendChild(a);
-            a.click();
-            setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
-        });
+        // Save contact is a plain link to the contact file published next to this page (built by cards/build_cards.py).
     </script>
 </body>
 </html>

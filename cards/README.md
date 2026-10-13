@@ -4,13 +4,14 @@ Live cards (not indexed by search engines):
 - https://abikoagritech.com/abby
 - https://abikoagritech.com/david
 
-## Update a card (no tools needed)
-Open `abby/index.html` or `david/index.html` on GitHub, click the pencil, and edit the values
-in the block marked **EDIT THIS CARD HERE** near the top of the body. Leave a value empty ("")
-to hide it. Commit, and Netlify publishes it in about a minute. The QR code never changes.
+## Update a card
+Details live in `build_cards.py`. Edit them there and rebuild (below): this updates the page
+and the contact file that "Save contact" downloads (e.g. `david/dawit-makonnen.vcf`).
+For a quick text fix you can also edit the **EDIT THIS CARD HERE** block in the page itself on
+GitHub, but the .vcf file must be rebuilt to match. The QR code never changes.
 
-Photos: add a square photo (about 400x400, under 60 KB) to `images/cards/`, then set
-"photo": "/images/cards/abby.jpg".
+Photos: put a square `photo.jpg` (about 400x400, under 60 KB) in the card's output folder and set
+"photo": "photo.jpg"; the rebuild also embeds it in the contact file.
 
 ## Rebuild everything (pages, QR codes, print PDFs)
 Edit the details in `build_cards.py`, then:

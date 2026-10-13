@@ -34,6 +34,14 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# Contact files for the digital business cards: phones need the vCard type
+# to offer "Add to Contacts". Short cache so updated details show quickly.
+[[headers]]
+  for = "/*.vcf"
+  [headers.values]
+    Content-Type = "text/vcard; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
 # Card source and print files live in the repo but aren't served publicly.
 [[redirects]]
   from = "/cards/*"
