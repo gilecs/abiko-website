@@ -51,7 +51,7 @@ CARDS = {
         "title": "Founder & Managing Director",
         "title_am": "መሥራች እና ዋና ሥራ አስኪያጅ",
         "company": "Abiko Agritech",
-        "phone": "+251 91297033",
+        "phone": "+251 944 297 033",
         "whatsapp": True,
         "telegram": "@dmakonnen",
         "email": "dmakonn1@gmail.com",
