@@ -49,7 +49,7 @@ CARDS = {
         "name": "Dawit Makonnen",
         "name_am": "ዳዊት መኮንን",
         "title": "Founder & Managing Director",
-        "title_am": "መሥራች እና ዋና ሥራ አስኪያጅ",
+        "title_am": "",
         "company": "Abiko Agritech",
         "phone": "+251 944 297 033",
         "whatsapp": True,

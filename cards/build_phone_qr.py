@@ -24,16 +24,20 @@ async def main():
 @font-face{{font-family:'Noto Sans Ethiopic';font-weight:400 600;src:url(data:font/woff2;base64,{eth_b64}) format('woff2');unicode-range:U+1200-137F}}
 *{{margin:0;padding:0;box-sizing:border-box}}
 body{{width:1170px;height:2532px;background:{t["bg"]};color:{t["fg"]};font-family:Inter,'Noto Sans Ethiopic',sans-serif;text-align:center;
- display:flex;flex-direction:column;align-items:center;padding:330px 110px 0}}
-.qr{{margin-top:120px;width:860px;height:860px;background:#fff;border-radius:56px;padding:70px}}
+ display:flex;flex-direction:column;align-items:center;padding:250px 90px 0}}
+.qr{{margin-top:100px;width:800px;height:800px;background:#fff;border-radius:56px;padding:70px}}
 .qr svg{{width:100%;height:100%;display:block}}
-h1{{font-size:96px;font-weight:600;margin-top:110px;letter-spacing:-.01em}}
+h1{{font-size:96px;font-weight:600;margin-top:90px;letter-spacing:-.01em}}
+.co{{font-size:44px;font-weight:600;margin-top:18px}}
 .am{{font-size:54px;font-weight:500;margin-top:10px}}
 .role{{font-size:44px;color:{t["sub"]};margin-top:14px}}
-.cta{{font-size:46px;margin-top:80px;font-weight:600}}
+.contact{{margin-top:64px;padding:34px 56px;border-radius:36px;background:rgba(255,255,255,.1);font-size:52px;font-weight:600;line-height:1.6;letter-spacing:.01em}}
+.contact .lbl{{display:inline-block;width:190px;text-align:left;font-size:34px;font-weight:500;opacity:.75;letter-spacing:.12em;text-transform:uppercase;vertical-align:middle}}
+.cta{{font-size:42px;margin-top:64px;font-weight:600}}
 .url{{font-size:38px;color:{t["sub"]};margin-top:12px}}
 </style></head><body>{t["mark"]}<div class="qr">{qr}</div>
-<h1>{d["name"]}</h1>{f'<div class="am">{d["name_am"]}</div>' if d.get("name_am") else ""}<div class="role">{" · ".join(x for x in [d["title"],d["company"]] if x)}</div>{f'<div class="role">{d["title_am"]}</div>' if d.get("title_am") else ""}
+<h1>{d["name"]}</h1>{f'<div class="am">{d["name_am"]}</div>' if d.get("name_am") else ""}<div class="role">{d["title"]}</div>{f'<div class="role">{d["title_am"]}</div>' if d.get("title_am") else ""}<div class="co">{d["company"]}</div>
+<div class="contact">{f'<div><span class="lbl">Phone</span>{d["phone"]}</div>' if d.get("phone") else ""}{f'<div><span class="lbl">Email</span>{d["email"]}</div>' if d.get("email") else ""}</div>
 <div class="cta">Scan to save my contact</div><div class="url">{url.replace("https://","")}</div></body></html>'''
             await pg.set_content(html,wait_until='networkidle')
             f=f'{OUT}/{theme}-{slug}-phone-qr.png'; await pg.screenshot(path=f); print(f)
