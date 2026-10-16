@@ -47,7 +47,7 @@ CARDS = {
     }),
     'abiko/david/index.html': ('abiko', {
         "name": "Dawit Makonnen",
-        "name_am": "ዳዊት መኮንን",
+        "name_am": "ዳዊት መኰንን",
         "title": "Founder & Managing Director",
         "title_am": "",
         "company": "Abiko Agritech",
