@@ -31,13 +31,13 @@ h1{{font-size:96px;font-weight:600;margin-top:90px;letter-spacing:-.01em}}
 .co{{font-size:44px;font-weight:600;margin-top:18px}}
 .am{{font-size:54px;font-weight:500;margin-top:10px}}
 .role{{font-size:44px;color:{t["sub"]};margin-top:14px}}
-.contact{{margin-top:64px;padding:34px 56px;border-radius:36px;background:rgba(255,255,255,.1);font-size:52px;font-weight:600;line-height:1.6;letter-spacing:.01em}}
-.contact .lbl{{display:inline-block;width:190px;text-align:left;font-size:34px;font-weight:500;opacity:.75;letter-spacing:.12em;text-transform:uppercase;vertical-align:middle}}
+.contact{{margin-top:64px;padding:34px 50px;border-radius:36px;text-align:left;background:rgba(255,255,255,.1);font-size:50px;font-weight:600;line-height:1.6;letter-spacing:.01em}}
+.contact .lbl{{display:inline-block;width:275px;text-align:left;font-size:34px;font-weight:500;opacity:.75;letter-spacing:.12em;text-transform:uppercase;vertical-align:middle}}
 .cta{{font-size:42px;margin-top:64px;font-weight:600}}
 .url{{font-size:38px;color:{t["sub"]};margin-top:12px}}
 </style></head><body>{t["mark"]}<div class="qr">{qr}</div>
 <h1>{d["name"]}</h1>{f'<div class="am">{d["name_am"]}</div>' if d.get("name_am") else ""}<div class="role">{d["title"]}</div>{f'<div class="role">{d["title_am"]}</div>' if d.get("title_am") else ""}<div class="co">{d["company"]}</div>
-<div class="contact">{f'<div><span class="lbl">Phone</span>{d["phone"]}</div>' if d.get("phone") else ""}{f'<div><span class="lbl">Email</span>{d["email"]}</div>' if d.get("email") else ""}</div>
+<div class="contact">{f'<div><span class="lbl">Phone</span>{d["phone"]}</div>' if d.get("phone") else ""}{f'<div><span class="lbl">Email</span>{d["email"]}</div>' if d.get("email") else ""}{f'<div><span class="lbl">TikTok</span>@{d["tiktok"].rstrip("/").split("@")[-1]}</div>' if d.get("tiktok") else ""}{f'<div><span class="lbl">Facebook</span>@{d["facebook"].rstrip("/").split("/")[-1]}</div>' if d.get("facebook") else ""}</div>
 <div class="cta">Scan to save my contact</div><div class="url">{url.replace("https://","")}</div></body></html>'''
             await pg.set_content(html,wait_until='networkidle')
             f=f'{OUT}/{theme}-{slug}-phone-qr.png'; await pg.screenshot(path=f); print(f)
